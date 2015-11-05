@@ -30,11 +30,11 @@ LOCSTRINGS = {
 		"deleting" => "Löschung, Durchlauf ",
 		"do_not_close" => "Bitte nicht schließen",
 		"del_completed_short" => "Löschen abgeschlossen",
-		"del_completed_long" => "Das Löschen des Laufwerkes %NICEDEV% ist abgeschlossen! \nEs wird nun die Protokolldatei angezeigt.",
+		"del_completed_long" => "Das Löschen des Laufwerkes %DEVICE% ist abgeschlossen! \nEs wird nun die Protokolldatei angezeigt.",
 		"prog_desc" => "Dieser Assistent hilft Ihnen beim Löschen von Partitionen oder Festplatten mit dem Programm <b>dc3dd des US-Verteidigungsministeriums</b>. Dieses Werkzeug überschreibt komplette Festplatten oder einzelne Partitionen mit Zufallswerten, so dass gespeicherten Daten nicht mehr wiederherzustellen sind. Eine so gelöschte Festplatte können Sie bedenkenlos weitergeben.",
 		"what_to_delete" => "\nWählen Sie das Laufwerk, welches Sie löschen wollen.\n Sie können einzelne Partitionen oder gesamte Festplatten löschen.\n Für eine Komplettlöschung empfehlen wir die Auswahl der gesamten Festplatte.\n ACHTUNG: \n Es werden nur Laufwerke angezeigt, die momentan nicht im Zugriff sind!",
 		"start_title" => "Datenlöschung starten",
-		"method_desc" => "\nWählen Sie die Löschmethode:\n\nNach heutigem Stand der Technik lassen sich Daten nicht mehr wiederherstellen, die einmal mit Nullen überschrieben wurden. Um sicher zu gehen, wählen Sie das zweimalige Überschreiben mit Zufallswerten.\n\n",
+		"method_desc" => "\nWählen Sie die Löschmethode:\n\nNach heutigem Stand der Technik lassen sich Daten nicht mehr wiederherstellen, die einmal mit Nullen überschrieben wurden. Um sicher zu gehen, wählen Sie mindestens zweimaliges Überschreiben mit Zufallswerten.\n\n",
 		"delete_part" => "Inhalt einer Partition löschen",
 		"delete_disk" => "Inhalt einer Festplatte löschen",
 		"method_zero" => "Mit Nullen überschreiben",
@@ -678,7 +678,7 @@ def apply_settings(assi, device, pattern, count)
 		
 		### system("Terminal --geometry=80x12 --hide-toolbar --hide-menubar --disable-server -T \"" + extract_lang_string("deleting") + " " + (i + 1).to_s + " - " + extract_lang_string("do_not_close") + "\" -x " + command)
 		### change to a more common terminal-type and bring a little bit of color to life
-		### set a nice font, but beware of the wrong one because no underline will be shown then
+		### set a nice font, but beware of the wrong one because no underline will be shown then or perhaps other strange display faults
 			system("uxterm -fa 'Courier' -fs 14 -bd red -bg blue -b 16 -w 8 -fg orange -geometry 100x12 -uc +ulc -wf -title \"" + extract_lang_string("deleting") + " " + (i + 1).to_s + " - " + extract_lang_string("do_not_close") + "\" -e " + command)
 
 		end
