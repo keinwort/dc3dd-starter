@@ -4,7 +4,8 @@ Assistant GUI for dc3dd to delete Harddrives and Partitions securly
 with hash and log-file  
 planned in future -> enhanced with a printable report in PDF-A for archiving  
 
-~# dc3dd --v..
+~# dc3dd --v
+
 dc3dd (dc3dd) 7.2.641
 
 a ruby script  
