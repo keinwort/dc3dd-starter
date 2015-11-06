@@ -1,5 +1,4 @@
 #!/bin/bash
-
 case $LANG in 
 	[nN][lL]*)
 		LANGUAGE=nl exec ruby /opt/desinfect/dc3dd-starter.rb 
