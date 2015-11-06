@@ -58,6 +58,9 @@ copy or move them to /opt/desinfect/
 4d. the correct rights for the files, you may do it more strict if you like  
 ~# chmod 755 /opt/desinfect && chmod 755 /opt/desinfect/*  
   
+4e. start the script with the "SH-File"  
+~# sudo /opt/desinfect/dc3dd-starter.sh  
+  
   
 5.) Why this project?  
 need to delete a lot of old IDE-Harddisks(PATA)  
