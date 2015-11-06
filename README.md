@@ -5,7 +5,8 @@ with hash and log-file
 planned in future -> enhanced with a printable report in PDF-A for archiving  
 
 ~# dc3dd --v..
-dc3dd (dc3dd) 7.2.641..
+
+dc3dd (dc3dd) 7.2.641
 
 a ruby script  
 initialy taken out of the - c't Heise DVD - "Desinfec't 2015"  
