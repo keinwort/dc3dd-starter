@@ -27,18 +27,21 @@ http://www.heise.de/ct/hotline/FAQ-Desinfec-t-2015-2753002.html
 http://www.heise.de/forum/heise-Security/Themen-Hilfe/Desinfect/forum-33383/ 
 https://shop.heise.de/katalog/ct-14-2015 
 
+
 2.) License? 
 GPL v2.0, as in orginal file.
 
+
 3.) What do i need to install? (i hope i put only needed progs ;) )
-3a. Mate Desktop (i prefer full extras):
-# apt-get install kali-defaults kali-root-login desktop-base mate-core mate-desktop-environment-extras
+3a. Mate Desktop (i prefer full extras)
+~# apt-get install kali-defaults kali-root-login desktop-base mate-core mate-desktop-environment-extras
 
 3b. things the script needs
 ~# apt-get libteam-utils lshw exo-utils ruby-gtk2 ruby-libxml ruby-multi-xml
 
 3c. and of course, but it should be already there
 ~# apt-get install dc3dd
+
 
 4.) What do i need to run the script?
 4a. a folder for the logs, (it's hardcoded by now)
@@ -52,6 +55,7 @@ copy or move them to /opt/desinfect/
 
 4d.the correct rights for the files, you may do it more strict if you like
 ~# chmod 755 /opt/desinfect && chmod 755 /opt/desinfect/*
+
 
 5.) Why this project?
 need to delete a lot of old IDE-Harddisks(PATA) 
