@@ -9,7 +9,7 @@ dc3dd (dc3dd) 7.2.641
   
 a ruby script  
 initialy taken out of the - c't Heise DVD - "Desinfec't 2015"  
-so very mucho credits to the folks over there  
+so very mucho credits to the folks @ Heise  
   
 (by the way  - c't - is my very favorite computer-magazin)  
   
@@ -55,7 +55,7 @@ GPL v2.0, as in orginal file.
 4c. the files "dc3dd-starter.rb" + "dc3dd-starter.sh"  
 copy or move them to /opt/desinfect/  
   
-4d.the correct rights for the files, you may do it more strict if you like  
+4d. the correct rights for the files, you may do it more strict if you like  
 ~# chmod 755 /opt/desinfect && chmod 755 /opt/desinfect/*  
   
   
