@@ -4,20 +4,22 @@ Assistant GUI for dc3dd to delete Harddrives and Partitions securly
 with hash and log-file  
 planned in future -> enhanced with a printable report in PDF-A for archiving  
 
-
+~# dc3dd --v..
+dc3dd (dc3dd) 7.2.641..
+..
 a ruby script  
 initialy taken out of the - c't Heise DVD - "Desinfec't 2015"  
 so very mucho credits to the folks over there  
-
+..
 (by the way  - c't - is my very favorite computer-magazin)  
-
+..
  reworked for debian based linux versions (needs more distributions for testing/verifying)  
  tested on kali 2.0 for easier convenience as "root" ;)  
  and mate desktop for lower hardware + lower graphic cards.  
 remark: the original script runs on ubuntu-live-dvd with gnome  
-
-
-
+..
+..
+..
 .)FAQ  
 < ---------------------------------------------------------------------------->  
   
