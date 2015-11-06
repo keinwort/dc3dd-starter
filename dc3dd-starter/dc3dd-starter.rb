@@ -6,11 +6,10 @@ require "rexml/document"
 
 # License? GPL v2.0
 
-### edited by stephy rul aka keinwort
 =begin
  for debian based linux versions (needs more distributions for testing/verifying)
- tested on kali 2.0 for easier convenience as "root" ;)
- and mate desktop for lower hardware + graficcards
+ edited by stephy rul aka keinwort
+ more in readme.md
 =end
 
 LANGUAGE = ENV['LANGUAGE'][0..1]
