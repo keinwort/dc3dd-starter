@@ -19,6 +19,7 @@ LANGUAGE = ENV['LANGUAGE'][0..1]
 
 time = Time.new
 $gettime = time.strftime("%Y.%m.%d_%H%M%S")
+$nicetime = time.strftime("%Y.%m.%d - %H:%M:%S")
 
 LOCSTRINGS = {
 	"de" => {
@@ -84,66 +85,66 @@ LOCSTRINGS = {
 		"overview_long" => "<b>Delete %DRIVESTR%:</b> %NICEDEV%\n\n<b>Method:</b> Overwrite %COUNT% times with %METHOD%\n\n<b>Estimated time:</b> %MINTIME% to %MAXTIME% %UNIT%"
 	},
 	"pl" => {
-		 "prog_title" => "Wymazywanie danych",
-                "unknown_fs" => "Nieznany system plików",
-                "no_part_found" => "Nie odnaleziono żadnych partycji, które mozna wymazać - być może musisz odmontować napęd(y)",
-                "no_disk_found" => "Nie odnaleziono żadnego napędu, który można wymazać - być może musisz odmontować napęd(y)",
-                "deleting" => "Wymazywanie, przebieg ",
-                "do_not_close" => "Nie zamykaj tego okna",
-                "del_completed_short" => "Wymazywanie zakończone",
-                "del_completed_long" => "Wymazywanie urządzenia %DEVICE% zostało zakończone! Zobaczysz teraz plik dziennika.",
-                "prog_desc" => "Niniejszy kreator umżliwia usunięcie zawartości partycji czy dysku twardego przy pomocy programu <b>dc3dd z Departamentu Obrony USA</b>. Zapisuje on całą powierzchnię dysku lub partycji losowymi danymi, aby uniemożliwić odczytanie uprzednio składowanych tam informacji. Po usunięciu danych w ten sposób możesz sprzedać lub oddać dysk i nie bać się, że ktoś odczyta Twoje dane.",
-                "what_to_delete" => "Wybierz napęd, którego zawartość chcesz wymazać. Możesz wskazać cały napęd lub pojedynczą partycję. W celu uzyskania całkowitej pewności zalecamy wymazanie całego dysku. Uwaga: lista zawiera jedynie niezamontowane napędy!",
-                "start_title" => "Rozpocznij wymazywanie",
-                "method_desc" => "Wybierz metodę wymazywania: obecne technologie nie pozwalają odczytać danych nadpisanych jednokrotnie zerami. Dla całkowitej pewności możesz wybrać dwukrotne neadpisanie losowymi danymi.",
-                "delete_part" => "Wymaż zawartość partycji",
-                "delete_disk" => "Wymaż zawartość dysku",
-                "method_zero" => "Nadpisz zerami",
-                "method_random" => "Nadpisz losowymi danymi",
-                "method_choice" => "Wybierz metodę wymazywania",
-                "method_count" => "razy",
-                "drive_choice" => "Wybierz napęd docelowy",
-                "do_you_want" => "Czy chcesz rozpocząć wymazywanie z wybranymi ustawieniami?",
-                "disclaimer" => "<b>Oświadczenie:</b> Jestem świadom, że wymazywanie jest nieodwracalne, i że wybór niewłaściwego napędu/partycji może mieć poważne konsekwencje. Jestem również świadom, że nie we wszystkich przypadkach możliwe jest kompletne wymazanie informacji.",
-                "overview" => "Podsumowanie",
-                "hours" => "godzin",
-                "minutes" => "minut",
-                "zero_short" => "zerami",
-                "random_short" => "losowymi danymi",
-                "disk_short" => "dysk twardy",
-                "part_short" => "partycja",
-                "overview_long" => "<b>Wymazywanie %DRIVESTR%:</b> %NICEDEV%\n\n<b>Metoda:</b> Nadpisywanie %COUNT% razy %METHOD%\n\n<b>Przybliżony czas:</b> %MINTIME% do %MAXTIME% %UNIT%"
+    "prog_title" => "Wymazywanie danych",
+    "unknown_fs" => "Nieznany system plików",
+    "no_part_found" => "Nie odnaleziono żadnych partycji, które mozna wymazać - być może musisz odmontować napęd(y)",
+    "no_disk_found" => "Nie odnaleziono żadnego napędu, który można wymazać - być może musisz odmontować napęd(y)",
+    "deleting" => "Wymazywanie, przebieg ",
+    "do_not_close" => "Nie zamykaj tego okna",
+    "del_completed_short" => "Wymazywanie zakończone",
+    "del_completed_long" => "Wymazywanie urządzenia %DEVICE% zostało zakończone! Zobaczysz teraz plik dziennika.",
+    "prog_desc" => "Niniejszy kreator umżliwia usunięcie zawartości partycji czy dysku twardego przy pomocy programu <b>dc3dd z Departamentu Obrony USA</b>. Zapisuje on całą powierzchnię dysku lub partycji losowymi danymi, aby uniemożliwić odczytanie uprzednio składowanych tam informacji. Po usunięciu danych w ten sposób możesz sprzedać lub oddać dysk i nie bać się, że ktoś odczyta Twoje dane.",
+    "what_to_delete" => "Wybierz napęd, którego zawartość chcesz wymazać. Możesz wskazać cały napęd lub pojedynczą partycję. W celu uzyskania całkowitej pewności zalecamy wymazanie całego dysku. Uwaga: lista zawiera jedynie niezamontowane napędy!",
+    "start_title" => "Rozpocznij wymazywanie",
+    "method_desc" => "Wybierz metodę wymazywania: obecne technologie nie pozwalają odczytać danych nadpisanych jednokrotnie zerami. Dla całkowitej pewności możesz wybrać dwukrotne neadpisanie losowymi danymi.",
+    "delete_part" => "Wymaż zawartość partycji",
+    "delete_disk" => "Wymaż zawartość dysku",
+    "method_zero" => "Nadpisz zerami",
+    "method_random" => "Nadpisz losowymi danymi",
+    "method_choice" => "Wybierz metodę wymazywania",
+    "method_count" => "razy",
+    "drive_choice" => "Wybierz napęd docelowy",
+    "do_you_want" => "Czy chcesz rozpocząć wymazywanie z wybranymi ustawieniami?",
+    "disclaimer" => "<b>Oświadczenie:</b> Jestem świadom, że wymazywanie jest nieodwracalne, i że wybór niewłaściwego napędu/partycji może mieć poważne konsekwencje. Jestem również świadom, że nie we wszystkich przypadkach możliwe jest kompletne wymazanie informacji.",
+    "overview" => "Podsumowanie",
+    "hours" => "godzin",
+    "minutes" => "minut",
+    "zero_short" => "zerami",
+    "random_short" => "losowymi danymi",
+    "disk_short" => "dysk twardy",
+    "part_short" => "partycja",
+    "overview_long" => "<b>Wymazywanie %DRIVESTR%:</b> %NICEDEV%\n\n<b>Metoda:</b> Nadpisywanie %COUNT% razy %METHOD%\n\n<b>Przybliżony czas:</b> %MINTIME% do %MAXTIME% %UNIT%"
 	},
 	"es" => {
 		"prog_title" => "Eliminación de datos",
-                "unknown_fs" => "Sistema de archivo desconocido",
-                "no_part_found" => "No se encontró ninguna partición para ser eliminada. Puede que necesite montar alguna unidad",
-                "no_disk_found" => "No se encontró ningún disco para ser eliminado. Puede que necesite montar alguna unidad",
-                "deleting" => "Borrar ahora",
-                "do_not_close" => "Por favor, no cerrar",
-                "del_completed_short" => "Borrado completo",
-                "del_completed_long" => "Eliminación del dispositivo %DEVICE% completa. El archivo de registro se mostrará ahora.",
-                "prog_desc" => "Este asistente le ayudará a borrar el contenido de las unidades o las particiones con el programa <b>dc3dd del Departamento de Defensa de EEUU</b>. Esta aplicación sobreescribe completamente las unidades de disco o particiones con datos aleatorios, por lo que no podrá acceder nunca más a los datos anteriormente guardados. Una unidad borrada de este modo podría ser entregada a cualquiera sin temer por la privacidad.",
-                "what_to_delete" => "Elija la unidad que desea borrar. Puede eliminar el contenido de las particiones o la unidad de disco completa. Para un borrado total recomendamos elegir la unidad completa. Precaución: Únicamente se mostrarán las unidades que no están montadas.",
-                "start_title" => "Iniciar borrado",
-                "method_desc" => "Elegir el método de borrado: Una vez sobreescritos con ceros los datos con esta tecnología, no podrán ser recuperados nunca más. Para estar más seguro, se pueden sobreescribir dos veces con datos aleatorios.",
-                "delete_part" => "Borrar el contenido de una partición",
-                "delete_disk" => "Borrar el contenido de un disco duro",
-                "method_zero" => "Sobreescribir con ceros",
-                "method_random" => "Sobreescribir con datos aleatorios",
-                "method_choice" => "Elegir el método de borrado",
-                "method_count" => "Número de veces",
-                "drive_choice" => "Elegir la unidad de destino",
-                "do_you_want" => "¿Desea comenzar el proceso de borrado con la configuración seleccionada?",
-                "disclaimer" => "<b>Exención de responsabilidad:</b> Soy consciente de que el borrado será definitivo y un error en la elección de la unidad de destino puede traer consecuencias fatales. También soy consciente de que el borrado podría no ser completamente posible en todos los casos.",
-                "overview" => "Información general",
-                "hours" => "horas",
-                "minutes" => "minutos",
-                "zero_short" => "ceros",
-                "random_short" => "datos aleatorios",
-                "disk_short" => "disco duro",
-                "part_short" => "partición",
-                "overview_long" => "<b>Eliminar %DRIVESTR%:</b> %NICEDEV%\n\n<b>Método:</b> Sobreescribir con %COUNT% veces %METHOD%\n\n<b>Tiempo estimado:</b> %MINTIME% a %MAXTIME% %UNIT%"
+    "unknown_fs" => "Sistema de archivo desconocido",
+    "no_part_found" => "No se encontró ninguna partición para ser eliminada. Puede que necesite montar alguna unidad",
+    "no_disk_found" => "No se encontró ningún disco para ser eliminado. Puede que necesite montar alguna unidad",
+    "deleting" => "Borrar ahora",
+    "do_not_close" => "Por favor, no cerrar",
+    "del_completed_short" => "Borrado completo",
+    "del_completed_long" => "Eliminación del dispositivo %DEVICE% completa. El archivo de registro se mostrará ahora.",
+    "prog_desc" => "Este asistente le ayudará a borrar el contenido de las unidades o las particiones con el programa <b>dc3dd del Departamento de Defensa de EEUU</b>. Esta aplicación sobreescribe completamente las unidades de disco o particiones con datos aleatorios, por lo que no podrá acceder nunca más a los datos anteriormente guardados. Una unidad borrada de este modo podría ser entregada a cualquiera sin temer por la privacidad.",
+    "what_to_delete" => "Elija la unidad que desea borrar. Puede eliminar el contenido de las particiones o la unidad de disco completa. Para un borrado total recomendamos elegir la unidad completa. Precaución: Únicamente se mostrarán las unidades que no están montadas.",
+    "start_title" => "Iniciar borrado",
+    "method_desc" => "Elegir el método de borrado: Una vez sobreescritos con ceros los datos con esta tecnología, no podrán ser recuperados nunca más. Para estar más seguro, se pueden sobreescribir dos veces con datos aleatorios.",
+    "delete_part" => "Borrar el contenido de una partición",
+    "delete_disk" => "Borrar el contenido de un disco duro",
+    "method_zero" => "Sobreescribir con ceros",
+    "method_random" => "Sobreescribir con datos aleatorios",
+    "method_choice" => "Elegir el método de borrado",
+    "method_count" => "Número de veces",
+    "drive_choice" => "Elegir la unidad de destino",
+    "do_you_want" => "¿Desea comenzar el proceso de borrado con la configuración seleccionada?",
+    "disclaimer" => "<b>Exención de responsabilidad:</b> Soy consciente de que el borrado será definitivo y un error en la elección de la unidad de destino puede traer consecuencias fatales. También soy consciente de que el borrado podría no ser completamente posible en todos los casos.",
+    "overview" => "Información general",
+    "hours" => "horas",
+    "minutes" => "minutos",
+    "zero_short" => "ceros",
+    "random_short" => "datos aleatorios",
+    "disk_short" => "disco duro",
+    "part_short" => "partición",
+    "overview_long" => "<b>Eliminar %DRIVESTR%:</b> %NICEDEV%\n\n<b>Método:</b> Sobreescribir con %COUNT% veces %METHOD%\n\n<b>Tiempo estimado:</b> %MINTIME% a %MAXTIME% %UNIT%"
 	},
 	"nl" => {
 		"prog_title" => "Wissen gegevens",
@@ -270,7 +271,7 @@ def scan_parts (doc)
 			rescue
 			end
 			
-			 puts element.attributes["handle"] + " " + product + " SN:" + serialno + " " + version_no + " " + businfo + " " + size.to_s + unit
+      puts element.attributes["handle"] + " " + product + " SN:" + serialno + " " + version_no + " " + businfo + " " + size.to_s + unit
 			if element.attributes["id"] =~ /^cdrom/ 
 				#	puts "  " + element.elements["logicalname"].text
 				cdrom = true
@@ -320,9 +321,7 @@ def scan_parts (doc)
 					n.elements.each("logicalname") { |l| log_name.push(l.text) }
 					mount_point = log_name[1] if log_name.size > 1
 					begin
-						parts.push( [ n.elements["logicalname"].text,
-						fstype.to_s,
-						state, mount_point, rw, capacity ] )
+						parts.push( [ n.elements["logicalname"].text, fstype.to_s, state, mount_point, rw, capacity ] )
 					rescue
 					end
 				end
@@ -348,7 +347,7 @@ def scan_parts (doc)
 									puts "Checking: " + d.text
 									ifstype = "fat" if d.text =~ /FAT/
 									ifstype = "ntfs" if d.text =~ /NTFS/
- 									ifstype = "ext3" if d.text =~ /Linux/
+									ifstype = "ext3" if d.text =~ /Linux/
 									if d.text =~ /swap/
 										ifstype = "swap"
 										fstype = "swap"
@@ -365,9 +364,7 @@ def scan_parts (doc)
 								end
 								m.elements.each("logicalname") { |l| log_name.push(l.text) }
 								mount_point = log_name[1] if log_name.size > 1
-								parts.push( [ m.elements["logicalname"].text,
-								ifstype.to_s,
-								istate, mount_point, rw, capacity ] )
+								parts.push( [ m.elements["logicalname"].text, ifstype.to_s, istate, mount_point, rw, capacity ] )
 							end
 						rescue
 						end
@@ -376,7 +373,7 @@ def scan_parts (doc)
 				
 			}
 			# alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname ] )
-			 alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no ] )
+      alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no ] )
 		}
 		# FIXME: This is weird copy&paste
 		x.elements.each("node[@class='disk']/node[@class='disk']") { |element|
@@ -407,7 +404,8 @@ def scan_parts (doc)
 				unit = element.elements["size"].attributes["units"]
 			rescue
 			end
-			 puts element.attributes["handle"]  + " " + product + " " + businfo + " SN: " + serialno + " " + version_no + " " + size.to_s + unit
+      puts element.attributes["handle"]  + " " + product + " " + businfo + " SN: " + serialno + " " + version_no + " " + size.to_s + " " + unit
+      
 			if element.attributes["id"] =~ /^cdrom/ 
 				#	puts "  " + element.elements["logicalname"].text
 				cdrom = true
@@ -456,9 +454,7 @@ def scan_parts (doc)
 					end
 					n.elements.each("logicalname") { |l| log_name.push(l.text) }
 					mount_point = log_name[1] if log_name.size > 1
-					parts.push( [ n.elements["logicalname"].text,
-					fstype.to_s,
-					state, mount_point, rw, capacity ] )
+					parts.push( [ n.elements["logicalname"].text, fstype.to_s, state, mount_point, rw, capacity ] )
 				end
 				if is_extended == true
 					n.elements.each("node[@class='volume']") { |m|
@@ -489,9 +485,7 @@ def scan_parts (doc)
 							end
 							m.elements.each("logicalname") { |l| log_name.push(l.text) }
 							mount_point = log_name[1] if log_name.size > 1
-							parts.push( [ m.elements["logicalname"].text,
-							ifstype.to_s,
-							istate, mount_point, rw, capacity ] )
+							parts.push( [ m.elements["logicalname"].text, ifstype.to_s, istate, mount_point, rw, capacity ] )
 							# end
 						rescue
 						end
@@ -516,7 +510,7 @@ def scan_parts (doc)
 				begin
 					istate = element.elements["configuration/setting[@id='state']"].attributes["value"].to_s
 					imount_options = element.elements["configuration/setting[@id='mount.options']"].
-					attributes["value"].to_s.split(",")
+            attributes["value"].to_s.split(",")
 					imount_options.each { |o| irw = true if o == "rw" }
 				rescue
 				end
@@ -529,7 +523,7 @@ def scan_parts (doc)
 				# udrive = UsbDrive.new(element.elements["logicalname"].text)
 				begin
 					product = x.elements["vendor"].text + " " + x.elements["product"].text
-				#	udrive.product = x.elements["product"].text
+          #	udrive.product = x.elements["product"].text
 				rescue
 				end
 				mount_point = nil
@@ -544,7 +538,7 @@ def scan_parts (doc)
 				mount_point = log_name[1] if log_name.size > 1
 				parts.push( [ element.elements["logicalname"].text, ifstype.to_s, istate, mount_point, irw, capacity ] )
 				# alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname ] )
-				alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no ] )
+				alldisks.push( [ businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no ] )
 			end
 			#all_drives[element.elements["logicalname"].text] = udrive unless 
 			#all_drives.has_key?( element.elements["logicalname"].text )
@@ -572,10 +566,11 @@ def update_partcombo(disks, partcombo, partrows, drivecombo, driverows)
 	drivesizes = []
 	disks.each { |d|
 		sizestr = ""
+    puts ":: D2 ::" + d[2].to_s + "::"
 		if d[2] > 7_900_000_000
-			sizestr = ((d[2].to_f / 1073741824 ) + 0.5).to_i.to_s + "GB"
+			sizestr = ((d[2].to_f / 1073741824 ) + 0.5).to_i.to_s + " GB"
 		else
-			sizestr = (d[2].to_f / 1048576 ).to_i.to_s + "MB"
+			sizestr = (d[2].to_f / 1048576 ).to_i.to_s + " MB"
 		end
 		businfo = "IDE/SATA"
 		businfo = "USB" if d[0] =~ /^usb/
@@ -583,9 +578,9 @@ def update_partcombo(disks, partcombo, partrows, drivecombo, driverows)
 		d[5].each { |p|
 			psize = ""
 			if p[5] > 7_900_000_000
-				psize = ((p[5].to_f / 1073741824 ) + 0.5).to_i.to_s + "GB"
+				psize = ((p[5].to_f / 1073741824 ) + 0.5).to_i.to_s + " GB"
 			else
-				psize = (p[5].to_f / 1048576 ).to_i.to_s + "MB"
+				psize = (p[5].to_f / 1048576 ).to_i.to_s + " MB"
 			end
 			unless p[2] == "mounted" || d[4] == true
 				nicepart = d[1] + " (" + businfo + ", " + sizestr + ") Partition " + p[0] + " (" + p[1] + ", " + psize + ")"
@@ -600,11 +595,12 @@ def update_partcombo(disks, partcombo, partrows, drivecombo, driverows)
 		}
 		unless mounted == true || d[6].strip =~ /^\/dev\/sr/  
 			begin
-			product = d[1]
-				device = d[6]
-				serialno = d[7]
-				version_no = d[8]
-				nicedrive = d[1] + " " + device + " (" + businfo + ", " + sizestr + ", SN: " + serialno + ", Version: " + version_no + ")"
+        $product = d[1]
+        $size_unit = d[2].to_s + " bytes"
+				$device = device = d[6]
+				$serialno = serialno = d[7]
+				$version_no = version_no = d[8]
+				$nicedrive = nicedrive = d[1] + " " + device + " (" + businfo + ", " + sizestr + ", SN: " + serialno + ", Version: " + version_no + ")"
 				drivecombo.append_text(nicedrive)
 				disk_rows += 1
 				disk_array.push(device)
@@ -635,11 +631,11 @@ def apply_settings(assi, device, pattern, count)
 	puts "How often? " + count.to_s
 	puts "Use complex pattern? " + pattern.to_s
 	puts "Alles hat ein Ende!"
-	logfile = ""
+	unique_string = "please_enable_urandom"
 	IO.popen("dd if=/dev/urandom bs=1M count=3 | sha1sum") { |i|
 		while i.gets
 			cols = $_.split
-			logfile = cols[0].strip
+			unique_string = cols[0].strip
 		end
 	}
 	0.upto(count.to_i - 1) { |i|
@@ -650,8 +646,40 @@ def apply_settings(assi, device, pattern, count)
 				hexpat = cols[0].strip
 			end
 		}
-		$file_for_log = "/root/logs/clearing/dc3dd_clear_" + $gettime + "_" + logfile + "_.txt"
-		###		command = "dc3dd wipe=" + device + " log=/tmp/dc3dd_errors_" + logfile + ".txt"
+    ### set location for report
+    $location_for_report = "/root/logs/clearing/"
+    ### set up file name for the report
+    $file_for_report = $location_for_report + "dc3dd_report_" + $gettime + "_" + unique_string + ".txt"
+    ### =========================================== ###
+    ### set up some text for the report file header ###
+    ### =========================================== ###
+    open($file_for_report, 'w') do |f|
+      f.puts ""
+      f.puts ".                                  .    Data-Destroyer Report    .                                 ."
+      f.puts ".                                  .    " + $nicetime + "    .                                 ."
+      f.puts "::.______________________________________________________________________________________________.::"
+      f.puts ""
+      f.puts ""
+      ### f.puts "$nicedrive= " 'd[1] + " " + device + " (" + businfo + ", " + sizestr + ", SN: " + serialno + ", Version: " + version_no + ")"'
+      f.puts $nicedrive
+      f.puts ""
+      f.puts "Selected Object for clearing	" + device
+      f.puts ""
+      f.puts "Clearing Object Details:"
+      f.puts "Manufacturer/Vendor:		" + $product
+      f.puts "Version:					" + $version_no
+      f.puts "SerialNo:					" + $serialno
+      f.puts "real Size:					" + $size_unit
+      f.puts ""
+      f.puts "< ------------------------------------------------------------------------------------------------ >"
+      f.puts ""
+      f.puts "Method commanded:"
+      f.puts "How often?					" + count.to_s
+      f.puts "Use complex pattern?		" + pattern.to_s
+      f.puts ""
+      f.puts ""
+    end
+		### command = "dc3dd wipe=" + device + " log=/tmp/dc3dd_errors_" + logfile + ".txt"
 		### ~ add more verbose and verification to wiping
 		### command = "dc3dd hwipe=" + device + " log=/root/logs/clearing/dc3dd_clear_" + $gettime + "_" + logfile + ".txt" 
 		### one option per line for easy read + select
@@ -665,19 +693,19 @@ def apply_settings(assi, device, pattern, count)
 		### Activate compact reporting
 		# command = command + " nwspc=on"
 		# command = command + " bufsz=64M"
-		command = command + " log=" + $file_for_log
+		command = command + " log=" + $file_for_report
 		# command = command + " hlog=/root/logs/clearing/dc3dd_clear_" + $gettime + "_" + logfile + "_h.txt"
 		# command = command + " mlog=/root/logs/clearing/dc3dd_clear_" + $gettime + "_" + logfile + "_m.txt"
 		### !!! For verification testing and demonstration purposes, corrupt the
 		### !!! output file(s) with extra bytes so a hash mismatch is guaranteed.
 		# command = command + " corruptoutput=on"
-		
+
 		# puts command
 		if $dummy == false
-		
-		### system("Terminal --geometry=80x12 --hide-toolbar --hide-menubar --disable-server -T \"" + extract_lang_string("deleting") + " " + (i + 1).to_s + " - " + extract_lang_string("do_not_close") + "\" -x " + command)
-		### change to a more common terminal-type and bring a little bit of color to life
-		### set a nice font, but beware of the wrong one because no underline will be shown then or perhaps other strange display faults
+
+      ### system("Terminal --geometry=80x12 --hide-toolbar --hide-menubar --disable-server -T \"" + extract_lang_string("deleting") + " " + (i + 1).to_s + " - " + extract_lang_string("do_not_close") + "\" -x " + command)
+      ### change to a more common terminal-type and bring a little bit of color to life,
+      ### set a nice font, but beware of the wrong one because no underline will be shown then or perhaps other strange display faults
 			system("uxterm -fa 'Courier' -fs 14 -bd red -bg blue -b 16 -w 8 -fg orange -geometry 100x12 -uc +ulc -wf -title \"" + extract_lang_string("deleting") + " " + (i + 1).to_s + " - " + extract_lang_string("do_not_close") + "\" -e " + command)
 
 		end
@@ -703,7 +731,7 @@ def apply_settings(assi, device, pattern, count)
 	# system("sudo /sbin/mdev -s")
 	# system("chown surfer /tmp/dc3dd_errors_" + logfile + ".txt")
 	# system("su surfer -c 'exo-open /tmp/dc3dd_errors_" + logfile + ".txt'")
-	system("exo-open " + $file_for_log)
+	system("exo-open " + $file_for_report)
 	assi.destroy
 end
 
@@ -923,9 +951,9 @@ assi.set_forward_page_func{|curr|
 	drivestr = extract_lang_string("disk_short") if diskradio.active?
 	# "<b> %DRIVESTR% löschen:</b> %NICEDEV%\n\n<b>Methode:</b> %COUNT% mal mit %METHOD% überschreiben\n\n<b>Benötigte Zeit:</b> %MINTIME% bis %MAXTIME% %UNIT% (geschätzt)",
 	ovlabel.set_markup(extract_lang_string("overview_long").gsub("%DRIVESTR%", drivestr).
-		gsub("%NICEDEV%", nicedev.to_s).gsub("%COUNT%", ddct.value.to_i.to_s).
-		gsub("%METHOD%", ddmethod).gsub("%MINTIME%", mintime.to_i.to_s).
-		gsub("%MAXTIME%", maxtime.to_i.to_s).gsub("%UNIT%", minmaxunit)
+      gsub("%NICEDEV%", nicedev.to_s).gsub("%COUNT%", ddct.value.to_i.to_s).
+      gsub("%METHOD%", ddmethod).gsub("%MINTIME%", mintime.to_i.to_s).
+      gsub("%MAXTIME%", maxtime.to_i.to_s).gsub("%UNIT%", minmaxunit)
 	)
 	puts curr
 	if curr == 0
@@ -934,17 +962,17 @@ assi.set_forward_page_func{|curr|
 		alldisks = scan_parts(read_devs) if xml_read_count < 1
 		xml_read_count += 1
 		#alldisks.each { |d|
-			# d[0] businfo
-			# d[1] Name
-			# d[2] Größe in Bytes
-			# d[3] Einheit
-			# d[4] Boolean CDROM
-			# d[5] Partitionen / Array
-			# d[5][0][0] Device 
-			# d[5][0][1] Filesystem
-			# d[5][0][2] Mounted (String)
-			# d[5][0][4] Mounted (Boolean)
-			#puts " -+- " + d[5][0][6].to_s + " -+-"
+    # d[0] businfo
+    # d[1] Name
+    # d[2] Größe in Bytes
+    # d[3] Einheit
+    # d[4] Boolean CDROM
+    # d[5] Partitionen / Array
+    # d[5][0][0] Device 
+    # d[5][0][1] Filesystem
+    # d[5][0][2] Mounted (String)
+    # d[5][0][4] Mounted (Boolean)
+    #puts " -+- " + d[5][0][6].to_s + " -+-"
 		#}
 		partrows, partarray, diskrows, diskarray, niceparts, nicedrives, partsizes, drivesizes = 
 			update_partcombo(alldisks, partcombo, partrows, diskcombo, diskrows)
