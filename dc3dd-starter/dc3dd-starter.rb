@@ -242,6 +242,14 @@ def scan_parts (doc)
 			storageproduct = x.elements["vendor"].text.to_s + " " + x.elements["product"].text.to_s
 		rescue
 		end
+    vendor = ""
+		begin
+			vendor = x.elements["vendor"].text.to_s
+      vendor = "unknown Vendor" unless vendor == ""
+      $vendor = vendor
+		rescue
+		end
+    puts "Vendor0 -:" + vendor + ":-"
 		x.elements.each("node[@class='disk']") { |element|
 			parts = []
 			product = ""
@@ -271,7 +279,7 @@ def scan_parts (doc)
 			rescue
 			end
 			
-      puts element.attributes["handle"] + " " + product + " SN:" + serialno + " " + version_no + " " + businfo + " " + size.to_s + unit
+      puts element.attributes["handle"] + " " + $vendor + " : " + product + " SN:" + serialno + " " + version_no + " " + businfo + " " + size.to_s + " " + unit
 			if element.attributes["id"] =~ /^cdrom/ 
 				#	puts "  " + element.elements["logicalname"].text
 				cdrom = true
@@ -373,7 +381,7 @@ def scan_parts (doc)
 				
 			}
 			# alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname ] )
-      alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no ] )
+      alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no, vendor ] )
 		}
 		# FIXME: This is weird copy&paste
 		x.elements.each("node[@class='disk']/node[@class='disk']") { |element|
@@ -404,8 +412,9 @@ def scan_parts (doc)
 				unit = element.elements["size"].attributes["units"]
 			rescue
 			end
-      puts element.attributes["handle"]  + " " + product + " " + businfo + " SN: " + serialno + " " + version_no + " " + size.to_s + " " + unit
-      
+
+      puts element.attributes["handle"] + " " + vendor + " : " + product + " SN:" + serialno + " " + version_no + " " + businfo + " " + size.to_s + " " + unit
+
 			if element.attributes["id"] =~ /^cdrom/ 
 				#	puts "  " + element.elements["logicalname"].text
 				cdrom = true
@@ -494,7 +503,7 @@ def scan_parts (doc)
 				
 			}
 			# alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname ] )
-			alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no ] )
+			alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no, vendor ] )
 		}
 		x.elements.each("node[@class='volume']") { |element|
 			if element.elements["logicalname"].text =~ /^\/dev\/sd/ && businfo =~ /^usb/
@@ -538,7 +547,7 @@ def scan_parts (doc)
 				mount_point = log_name[1] if log_name.size > 1
 				parts.push( [ element.elements["logicalname"].text, ifstype.to_s, istate, mount_point, irw, capacity ] )
 				# alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname ] )
-				alldisks.push( [ businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no ] )
+				alldisks.push( [ businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no, vendor ] )
 			end
 			#all_drives[element.elements["logicalname"].text] = udrive unless 
 			#all_drives.has_key?( element.elements["logicalname"].text )
@@ -566,12 +575,13 @@ def update_partcombo(disks, partcombo, partrows, drivecombo, driverows)
 	drivesizes = []
 	disks.each { |d|
 		sizestr = ""
-    puts ":: D2 ::" + d[2].to_s + "::"
+    
 		if d[2] > 7_900_000_000
 			sizestr = ((d[2].to_f / 1073741824 ) + 0.5).to_i.to_s + " GB"
 		else
 			sizestr = (d[2].to_f / 1048576 ).to_i.to_s + " MB"
 		end
+    puts ":: D2 ::" + d[2].to_s + "::"
 		businfo = "IDE/SATA"
 		businfo = "USB" if d[0] =~ /^usb/
 		mounted = false
@@ -600,14 +610,15 @@ def update_partcombo(disks, partcombo, partrows, drivecombo, driverows)
 				$device = device = d[6]
 				$serialno = serialno = d[7]
 				$version_no = version_no = d[8]
-				$nicedrive = nicedrive = d[1] + " " + device + " (" + businfo + ", " + sizestr + ", SN: " + serialno + ", Version: " + version_no + ")"
+        
+				$nicedrive = nicedrive = $vendor + " : " + d[1] + " " + device + " (" + businfo + ", " + sizestr + ", SN: " + serialno + ", Version: " + version_no + ")"
 				drivecombo.append_text(nicedrive)
 				disk_rows += 1
 				disk_array.push(device)
 				nicedrives.push(nicedrive)
 				drivesizes.push(d[2])
 			rescue
-				puts "trouble processing " + d[5].join(" // ")
+				puts "trouble processing Partition Size on " + d[1] + " :: " + d[5].join(" // ")
 			end
 		end
 	}
@@ -655,7 +666,9 @@ def apply_settings(assi, device, pattern, count)
     ### =========================================== ###
     open($file_for_report, 'w') do |f|
       f.puts ""
-      f.puts ".                                  .    Data-Destroyer Report    .                                 ."
+      f.puts " __________________________________________________________________________________________________ "
+      f.puts "˙                                                                                                  ˙"
+      f.puts ".                                  .       Clearing Report       .                                 ."
       f.puts ".                                  .    " + $nicetime + "    .                                 ."
       f.puts "::.______________________________________________________________________________________________.::"
       f.puts ""
@@ -666,7 +679,8 @@ def apply_settings(assi, device, pattern, count)
       f.puts "Selected Object for clearing	" + device
       f.puts ""
       f.puts "Clearing Object Details:"
-      f.puts "Manufacturer/Vendor:		" + $product
+      f.puts "Manufacturer/Vendor:		" + $vendor
+      f.puts "Modell:						" + $product
       f.puts "Version:					" + $version_no
       f.puts "SerialNo:					" + $serialno
       f.puts "real Size:					" + $size_unit
