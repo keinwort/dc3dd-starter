@@ -31,10 +31,10 @@ LOCSTRINGS = {
 		"do_not_close" => "Bitte nicht schließen",
 		"del_completed_short" => "Löschen abgeschlossen",
 		"del_completed_long" => "Das Löschen des Laufwerkes %DEVICE% ist abgeschlossen! \nEs wird nun die Protokolldatei angezeigt.",
-		"prog_desc" => "Dieser Assistent hilft Ihnen beim Löschen von Partitionen oder Festplatten mit dem Programm <b>dc3dd des US-Verteidigungsministeriums</b>. Dieses Werkzeug überschreibt komplette Festplatten oder einzelne Partitionen mit Zufallswerten, so dass gespeicherten Daten nicht mehr wiederherzustellen sind. Eine so gelöschte Festplatte können Sie bedenkenlos weitergeben.",
-		"what_to_delete" => "\nWählen Sie das Laufwerk, welches Sie löschen wollen.\n Sie können einzelne Partitionen oder gesamte Festplatten löschen.\n Für eine Komplettlöschung empfehlen wir die Auswahl der gesamten Festplatte.\n ACHTUNG: \n Es werden nur Laufwerke angezeigt, die momentan nicht im Zugriff sind!",
+		"prog_desc" => "Dieser Assistent hilft Ihnen beim Löschen von Partitionen oder Festplatten mit dem Programm <b>dc3dd des US-Verteidigungsministeriums</b>. Dieses Werkzeug überschreibt komplette Datenträger oder einzelne Partitionen mit Zufallswerten, so dass gespeicherten Daten nicht mehr wiederherzustellen sind. Eine so gelöschte Festplatte können Sie bedenkenlos weitergeben.",
+		"what_to_delete" => "\nWählen Sie das Laufwerk, welches Sie löschen wollen.\n Eine Partition oder eine gesamte Festplatte löschen?\n Für eine Komplettlöschung empfehlen wir die Auswahl der gesamten Festplatte.\n ACHTUNG: \n Es werden nur Laufwerke angezeigt, die momentan nicht im Zugriff sind!",
 		"start_title" => "Datenlöschung starten",
-		"method_desc" => "\nWählen Sie die Löschmethode:\n\nNach heutigem Stand der Technik lassen sich Daten nicht mehr wiederherstellen, die einmal mit Nullen überschrieben wurden. Um sicher zu gehen, wählen Sie mindestens zweimaliges Überschreiben mit Zufallswerten.\n\n",
+		"method_desc" => "\nWählen Sie die Löschmethode:\n\nNach heutigem Stand der Technik lassen sich Daten nicht mehr wiederherstellen, die einmal mit Nullen überschrieben wurden. Um sicher zu gehen, mindestens zweimal Überschreiben mit Zufallswerten.\n\n",
 		"delete_part" => "Inhalt einer Partition löschen",
 		"delete_disk" => "Inhalt einer Festplatte löschen",
 		"method_zero" => "Mit Nullen überschreiben",
@@ -43,7 +43,7 @@ LOCSTRINGS = {
 		"method count" => "mal löschen",
 		"drive_choice" => "Auswahl des Laufwerkes",
 		"do_you_want" => "\n Wollen Sie die Löschung mit den vorgenommenen Einstellungen durchführen?",
-		"disclaimer" => "<b>Haftungsausschluß:</b>\nIch bin mir bewußt, dass die Löschung unwiederbringlich erfolgt und eine falsche Laufwerksauswahl fatale Folgen haben kann. Ebenso ist mir bekannt, dass eine Löschung beschädigter Datenträger nicht immer vollständig möglich ist.",
+		"disclaimer" => "<b>Haftungsausschluß:</b>\nIch bin mir bewußt, dass die Löschung unwiederbringlich erfolgt und eine falsche Laufwerksauswahl fatale Folgen haben kann. Ebenso ist mir bekannt, dass eine Löschung nicht immer vollständig möglich ist, z.B. bei beschädigtem Datenträger.",
 		"overview" => "Zusammenfassung",
 		"hours" => "Stunden",
 		"minutes" => "Minuten",
@@ -61,28 +61,28 @@ LOCSTRINGS = {
 		"deleting" => "Deleting, run ",
 		"do_not_close" => "Please do not close",
 		"del_completed_short" => "Deleting completed",
-		"del_completed_long" => "Deleting device %DEVICE% is completed! The log file will be shown now.",
-		"prog_desc" => "This assistent helps deleting the content of hard disks or partitions with the program <b>dc3dd from the US Department of Defense</b>. It overwrites complete drives or partitions with random data, so that formerly stored data is not accessible anymore. A hard disk that was deleted this way might be given away without any fear of los privacy.",
-		"what_to_delete" => "Choose the drive you want to delete. You can delete the content of partitions or whole hard disks. For a complete deletion we recommend choosing a whole drive. Warning: Only drives are shown that are currently not mounted!",
+		"del_completed_long" => "Deleting device %DEVICE% is completed! \nThe log file will be shown now.",
+		"prog_desc" => "This assistent helps deleting the content of hard disks or partitions with the program <b>dc3dd of the US Department of Defense</b>. This tool overwrites complete drives or partitions with random data (depending on options selected), so that formerly stored data is not accessible anymore. A hard disk deleted this way might be given away thoughtlessly.",
+		"what_to_delete" => "\nChoose the object you want to delete.\n Delete the content of a partition or a whole hard disk?\n For a complete deletion we recommend choosing a whole drive.\n WARNING:\n Only drives currently not mounted are shown!",
 		"start_title" => "Start deletion",
-		"method_desc" => "Choose the deletion method: According to current state of technology data cannot be revealed anymore after overwriting once with zeroes. To be sure you might want to overwrite twice with random data.",
+		"method_desc" => "\nChoose the deletion method:\n\n According to the current state of technology data cannot be revealed anymore after overwriting once with zeroes. Just to be sure, overwrite minimum twice with random data.\n\n",
 		"delete_part" => "Delete content of a partition",
 		"delete_disk" => "Delete content of a hard disk",
 		"method_zero" => "Overwrite with zeroes",
 		"method_random" => "Overwrite with random data",
 		"method_choice" => "Choose the deletion method",
 		"method_count" => "times", 
-		"drive_choice" => "Choose the target drive",
-		"do_you_want" => "Do you want to start deleting with the selected settings?",
-		"disclaimer" => "<b>Disclaimer:</b> I am aware that the deletion is irreversible and the wrong choice of the target can have fatal consequences. I am also aware that the deletion might not be completely possible in all cases.",
-		"overview" => "Zusammenfassung",
+		"drive_choice" => "Choose the target object",
+		"do_you_want" => "\n Do you want to start deleting with the selected settings?",
+		"disclaimer" => "<b>Disclaimer:</b>\nI am aware that the deletion is irreversible and the wrong choice of the target can have fatal consequences. I am also aware that the deletion might not be completely possible in all cases, i.e. faulty harddisk.",
+		"overview" => "Summary",
 		"hours" => "hours",
 		"minutes" => "minutes",
 		"zero_short" => "zeroes",
 		"random_short" => "random data",
 		"disk_short" => "hard disk",
 		"part_short" => "partition",
-		"overview_long" => "<b>Delete %DRIVESTR%:</b> %NICEDEV%\n\n<b>Method:</b> Overwrite %COUNT% times with %METHOD%\n\n<b>Estimated time:</b> %MINTIME% to %MAXTIME% %UNIT%"
+		"overview_long" => "<b>Delete %DRIVESTR%:</b>\n %NICEDEV%\n\n<b>Method:</b> Overwrite %COUNT% times with %METHOD%\n\n<b>Estimated time:</b> %MINTIME% to %MAXTIME% %UNIT%"
 	},
 	"pl" => {
     "prog_title" => "Wymazywanie danych",
@@ -242,14 +242,6 @@ def scan_parts (doc)
 			storageproduct = x.elements["vendor"].text.to_s + " " + x.elements["product"].text.to_s
 		rescue
 		end
-    vendor = ""
-		begin
-			vendor = x.elements["vendor"].text.to_s
-      vendor = "unknown Vendor" unless vendor == ""
-      $vendor = vendor
-		rescue
-		end
-    puts "Vendor0 -:" + vendor + ":-"
 		x.elements.each("node[@class='disk']") { |element|
 			parts = []
 			product = ""
@@ -259,6 +251,16 @@ def scan_parts (doc)
 			diskname = element.elements["logicalname"].text.to_s
 			serialno = ""
 			version_no = ""
+      vendor = ""
+    	begin
+        vendor = element.elements["vendor"].text unless element.elements["vendor"].nil?
+        #vendor = element.elements["vendor"].text.to_s 
+        vendor = "notknown_Vendor" if vendor == nil
+        vendor = "unknown_Vendor" if vendor == ""
+          $vendor = vendor
+      	rescue
+    	end
+      puts "diskVendor -:" + $vendor + ":-"
 			begin
 				version_no = element.elements["version"].text.to_s
 			rescue
@@ -546,7 +548,7 @@ def scan_parts (doc)
 				element.elements.each("logicalname") { |l| log_name.push(l.text) }
 				mount_point = log_name[1] if log_name.size > 1
 				parts.push( [ element.elements["logicalname"].text, ifstype.to_s, istate, mount_point, irw, capacity ] )
-				# alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname ] )
+				# alldisks.push( [ businfo, product, size, unit, cdrom, parts, diskname ] )
 				alldisks.push( [ businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no, vendor ] )
 			end
 			#all_drives[element.elements["logicalname"].text] = udrive unless 
@@ -610,7 +612,6 @@ def update_partcombo(disks, partcombo, partrows, drivecombo, driverows)
 				$device = device = d[6]
 				$serialno = serialno = d[7]
 				$version_no = version_no = d[8]
-        
 				$nicedrive = nicedrive = $vendor + " : " + d[1] + " " + device + " (" + businfo + ", " + sizestr + ", SN: " + serialno + ", Version: " + version_no + ")"
 				drivecombo.append_text(nicedrive)
 				disk_rows += 1
@@ -638,17 +639,59 @@ def update_partcombo(disks, partcombo, partrows, drivecombo, driverows)
 end
 
 def apply_settings(assi, device, pattern, count)
-	puts "Device: " + device.to_s
-	puts "How often? " + count.to_s
-	puts "Use complex pattern? " + pattern.to_s
-	puts "Alles hat ein Ende!"
-	unique_string = "please_enable_urandom"
+  	unique_string = "please_enable_urandom"
 	IO.popen("dd if=/dev/urandom bs=1M count=3 | sha1sum") { |i|
 		while i.gets
 			cols = $_.split
 			unique_string = cols[0].strip
 		end
 	}
+
+    ### set location for report
+    $location_for_report = "/root/logs/clearing/"
+    ### set up file name for report
+    $file_for_report = $location_for_report + "dc3dd_report_" + $gettime + "_" + unique_string + ".txt"
+    ### ======================================== ###
+    ### set up some text for report file header  ###
+    ### ======================================== ###
+#=begin
+    open($file_for_report, 'a') do |f|
+      f.puts ""
+      f.puts " __________________________________________________________________________________________________ "
+      f.puts "˙                                                                                                  ˙"
+      f.puts ".                                  .       Clearing Report       .                                 ."
+      f.puts ".                                  .    " + $nicetime + "    .                                 ."
+      f.puts "::.______________________________________________________________________________________________.::"
+      f.puts "	"
+      f.puts "	ReportNo: " + unique_string
+      f.puts "	"
+      f.puts "	Selected Object for clearing	-> " + device
+      f.puts "	"
+      f.puts "	" + $nicedrive
+      f.puts "	"
+      f.puts "	"
+      f.puts "	Clearing Object Details:"
+      f.puts "	Manufacturer/Vendor:		" + $vendor
+      f.puts "	Modell:						" + $product
+      f.puts "	Version:					" + $version_no
+      f.puts "	SerialNo:					" + $serialno
+      f.puts "	real Size:					" + $size_unit
+      f.puts ""
+      f.puts "	Method delegated:"
+      f.puts "	Number of writes?				" + count.to_s
+      f.puts "	use complex pattern?			" + pattern.to_s
+      f.puts "	"
+      f.puts "< ------------------------------------------------------------------------------------------------ >"
+      f.puts "	<output dc3dd>"
+    end
+#=end
+  
+  ### just some console puts
+	puts "Device: " + device.to_s
+	puts "Number of writes?      " + count.to_s
+	puts "Use complex pattern?   " + pattern.to_s
+	puts "Alles hat ein Ende!"
+  
 	0.upto(count.to_i - 1) { |i|
 		hexpat = "deadbeef"
 		IO.popen("dd if=/dev/urandom bs=1M count=3 | sha1sum") { |j|
@@ -657,74 +700,62 @@ def apply_settings(assi, device, pattern, count)
 				hexpat = cols[0].strip
 			end
 		}
-    ### set location for report
-    $location_for_report = "/root/logs/clearing/"
-    ### set up file name for the report
-    $file_for_report = $location_for_report + "dc3dd_report_" + $gettime + "_" + unique_string + ".txt"
-    ### =========================================== ###
-    ### set up some text for the report file header ###
-    ### =========================================== ###
-    open($file_for_report, 'w') do |f|
-      f.puts ""
-      f.puts " __________________________________________________________________________________________________ "
-      f.puts "˙                                                                                                  ˙"
-      f.puts ".                                  .       Clearing Report       .                                 ."
-      f.puts ".                                  .    " + $nicetime + "    .                                 ."
-      f.puts "::.______________________________________________________________________________________________.::"
-      f.puts ""
-      f.puts ""
-      ### f.puts "$nicedrive= " 'd[1] + " " + device + " (" + businfo + ", " + sizestr + ", SN: " + serialno + ", Version: " + version_no + ")"'
-      f.puts $nicedrive
-      f.puts ""
-      f.puts "Selected Object for clearing	" + device
-      f.puts ""
-      f.puts "Clearing Object Details:"
-      f.puts "Manufacturer/Vendor:		" + $vendor
-      f.puts "Modell:						" + $product
-      f.puts "Version:					" + $version_no
-      f.puts "SerialNo:					" + $serialno
-      f.puts "real Size:					" + $size_unit
-      f.puts ""
-      f.puts "< ------------------------------------------------------------------------------------------------ >"
-      f.puts ""
-      f.puts "Method commanded:"
-      f.puts "How often?					" + count.to_s
-      f.puts "Use complex pattern?		" + pattern.to_s
-      f.puts ""
-      f.puts ""
-    end
+    
+    ### ============================= ###
+    ### knocking the command together ###
+    ### ============================= ###
 		### command = "dc3dd wipe=" + device + " log=/tmp/dc3dd_errors_" + logfile + ".txt"
 		### ~ add more verbose and verification to wiping
 		### command = "dc3dd hwipe=" + device + " log=/root/logs/clearing/dc3dd_clear_" + $gettime + "_" + logfile + ".txt" 
 		### one option per line for easy read + select
 		command = "dc3dd"
-		command = command + " hwipe=" + device 
-		command = command + " tpat=" + hexpat if pattern == true
+    ### we hash the wiping
+		command = command + " hwipe=" + device
 		### hash=ALGORITHM where ALGORITHM is one of md5, sha1, sha256 or sha512
 		command = command + " hash=sha256"
-		### Activate  verbose  reporting
-		# command = command + " verb=on"
+		command = command + " tpat=" + hexpat if pattern == true
+		### Activate verbose reporting
+		command = command + " verb=on"
 		### Activate compact reporting
 		# command = command + " nwspc=on"
 		# command = command + " bufsz=64M"
 		command = command + " log=" + $file_for_report
-		# command = command + " hlog=/root/logs/clearing/dc3dd_clear_" + $gettime + "_" + logfile + "_h.txt"
-		# command = command + " mlog=/root/logs/clearing/dc3dd_clear_" + $gettime + "_" + logfile + "_m.txt"
+		# command = command + " hlog=" + $file_for_report + "_h.txt"
+		# command = command + " mlog=" + $file_for_report + "_m.txt"
 		### !!! For verification testing and demonstration purposes, corrupt the
 		### !!! output file(s) with extra bytes so a hash mismatch is guaranteed.
 		# command = command + " corruptoutput=on"
 
 		# puts command
 		if $dummy == false
-
+    ### =========================== ###
+    ### finally release the command ###
+    ### =========================== ###
       ### system("Terminal --geometry=80x12 --hide-toolbar --hide-menubar --disable-server -T \"" + extract_lang_string("deleting") + " " + (i + 1).to_s + " - " + extract_lang_string("do_not_close") + "\" -x " + command)
       ### change to a more common terminal-type and bring a little bit of color to life,
       ### set a nice font, but beware of the wrong one because no underline will be shown then or perhaps other strange display faults
 			system("uxterm -fa 'Courier' -fs 14 -bd red -bg blue -b 16 -w 8 -fg orange -geometry 100x12 -uc +ulc -wf -title \"" + extract_lang_string("deleting") + " " + (i + 1).to_s + " - " + extract_lang_string("do_not_close") + "\" -e " + command)
-
 		end
 	}
-	
+	    
+    ### ================================== ###
+    ### set up some text for report footer ###
+    ### ================================== ###
+#=begin
+    open($file_for_report, 'a') do |f|
+      f.puts "</output dc3dd>"
+      f.puts "< ------------------------------------------------------------------------------------------------ >"
+      f.puts "	end ReportNo: " + unique_string
+      f.puts ""
+      f.puts ""
+      f.puts ""
+      f.puts "    ----- location -----    ----- date -----    ----- sign -----    ----- readable name -----       "
+      f.puts ""
+      f.puts ""
+      f.puts ""
+    end
+#=end
+#
 	dialog = Gtk::Dialog.new(extract_lang_string("del_completed_short"),assi,Gtk::Dialog::MODAL,
 		[ Gtk::Stock::OK, Gtk::Dialog::RESPONSE_OK ]
 	)
@@ -904,7 +935,7 @@ diskradio.signal_connect("clicked") { |b|
 
 assi.set_title  extract_lang_string("prog_title")
 assi.border_width = 10
-assi.set_size_request(700, 410)
+assi.set_size_request(800, 410)
 assi.signal_connect('destroy') { Gtk.main_quit }
 assi.signal_connect('cancel')  { assi.destroy }
 assi.signal_connect('close')   { |w| 
