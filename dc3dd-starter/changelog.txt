@@ -1,0 +1,6 @@
+changelog
+
+2011-11-12
++ extend the log
++ change some text in dialogs
++ added some option to wipr command
