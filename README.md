@@ -36,7 +36,7 @@ GPL v2.0, as in orginal file.
   
 3.) What do i need to install? (i hope i put only needed progs ;) )  
 3a. Mate Desktop (i prefer full extras)  
-~# apt-get install kali-defaults kali-root-login desktop-base mate-core mate-desktop-environment-extras  
+~# apt-get install kali-defaults kali-root-login desktop-base mate-core mate-desktop-environment-extra  
   
 3b. things the script needs  
 ~# apt-get libteam-utils lshw exo-utils ruby-gtk2 ruby-libxml ruby-multi-xml  
