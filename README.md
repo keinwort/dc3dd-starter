@@ -13,8 +13,9 @@ so very mucho credits to the folks @ Heise
   
 (by the way  - c't - is my very favorite computer-magazin)  
   
- reworked for debian based linux versions (needs more distributions for testing/verifying)  
- tested on kali 2.0 for easier convenience as "root" ;)  
+ modified and enhanced for debian based linux versions  
+ (needs more distributions for testing/verifying)  
+ tested on kali 2.0 for easier convenience as "root" ;-)  
  and mate desktop for lower hardware + lower graphic cards.  
 remark: the original script runs on ubuntu-live-dvd with gnome  
   
@@ -34,7 +35,7 @@ https://shop.heise.de/katalog/ct-14-2015
 GPL v2.0, as in orginal file.  
   
   
-3.) What do i need to install? (i hope i put only needed progs ;) )  
+3.) What do i need to install (in Kali2.0)? (i hope i put only needed progs ;) )  
 3a. Mate Desktop (i prefer full extras)  
 ~# apt-get install kali-defaults kali-root-login desktop-base mate-core mate-desktop-environment-extra  
   
@@ -52,17 +53,26 @@ GPL v2.0, as in orginal file.
 4b. a folder for the script(s) itself, i would recommend  
 ~# mkdir /opt/desinfect  
   
-4c. the files "dc3dd-starter.rb" + "dc3dd-starter.sh"  
+4c. the files "dc3dd-starter.sh" + "dc3dd-starter.rb"  
 copy or move them to /opt/desinfect/  
   
 4d. the correct rights for the files, you may do it more strict if you like  
 ~# chmod 755 /opt/desinfect && chmod 755 /opt/desinfect/*  
   
-4e. start the script with the "SH-File"  
+4e. start the script 
+4e.I: with the "SH-File" in a terminal  
+ (to see a bit of output or for error checking)  
 ~# sudo /opt/desinfect/dc3dd-starter.sh  
+or  
+4e.II: set up a starter on the desktop  
+command "sudo /opt/desinfect/dc3dd-starter.sh"
   
   
-5.) Why this project?  
+5.) for a nice PDF-Report  
+   ~# apt-get install unoconv libreoffice-base  
+  
+  
+6.) Why this project?  
 need to delete a lot of old IDE-Harddisks(PATA)  
 on an old onboard Intel 915 graphics-card based PC  
 and a log aka some printable report is needed.  
