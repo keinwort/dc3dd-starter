@@ -1,6 +1,12 @@
 changelog
 
+2011-11-13
++ added hint in readme.md for PDF output
++ changes in $vendor variable handling
++ reformat code
++ log layout changes (3 overwrites prints on one DIN A4 Page now at a font size of 10points) 
+
 2011-11-12
 + extend the log
 + change some text in dialogs
-+ added some option to wipr command
++ added some more options to wipe command
