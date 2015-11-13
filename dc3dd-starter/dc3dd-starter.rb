@@ -78,7 +78,7 @@ LOCSTRINGS = {
 		"do_not_close" => "Please do not close",
 		"del_completed_short" => "Deleting completed",
 		"del_completed_long" => "Deleting device %DEVICE% is completed! \nThe log file will be shown now.",
-		"prog_desc" => "This assistent helps deleting the content of hard disks or partitions with the program <b>dc3dd of the US Department of Defense</b>. This tool overwrites complete drives or partitions with random data (depending on options selected), so that formerly stored data is not accessible anymore. A hard disk deleted this way might be given away thoughtlessly.",
+		"prog_desc" => "This assistent helps deleting the content of hard disks or partitions with the program <b>dc3dd from the US Department of Defense</b>. This tool overwrites complete drives or partitions with random data (depending on options selected), so that formerly stored data is not accessible anymore. A hard disk deleted this way might be given away thoughtlessly.",
 		"what_to_delete" => "\nChoose the object you want to delete.\n Delete the content of a partition or a whole hard disk?\n For a complete deletion we recommend choosing a whole drive.\n WARNING:\n Only drives currently not mounted are shown!",
 		"start_title" => "Start deletion",
 		"method_desc" => "\nChoose the deletion method:\n\n According to the current state of technology data cannot be revealed anymore after overwriting once with zeroes. Just to be sure, overwrite minimum twice with random data.\n\n",
@@ -90,7 +90,7 @@ LOCSTRINGS = {
 		"method_count" => "times", 
 		"drive_choice" => "Choose the target object",
 		"do_you_want" => "\n Do you want to start deleting with the selected settings?",
-		"disclaimer" => "<b>Disclaimer:</b>\nI am aware that the deletion is irreversible and the wrong choice of the target can have fatal consequences. I am also aware that the deletion might not be completely possible in all cases, i.e. faulty harddisk.",
+		"disclaimer" => "<b>Disclaimer:</b>\nI am aware that the deletion is irreversible and the wrong choice of the target can have fatal consequences. I am also aware that the deletion might not be completely possible in all cases, for eexample faulty harddisk.",
 		"overview" => "Summary",
 		"hours" => "hours",
 		"minutes" => "minutes",
@@ -255,9 +255,10 @@ def scan_parts (doc)
 		end
 		storageproduct = ""
 		begin
-			storageproduct = x.elements["vendor"].text.to_s + " " + x.elements["product"].text.to_s
+			storageproduct = x.elements["vendor"].text.to_s + "::" + x.elements["product"].text.to_s
 		rescue
 		end
+		puts "storageproduct0 -:" + storageproduct + ":-"
 		x.elements.each("node[@class='disk']") { |element|
 			parts = []
 			product = ""
@@ -267,16 +268,16 @@ def scan_parts (doc)
 			diskname = element.elements["logicalname"].text.to_s
 			serialno = ""
 			version_no = ""
-			vendor = nil
+			#diskvendor = ""
 			begin
-				vendor = element.elements["vendor"].text unless element.elements["vendor"].nil?
+				diskvendor = element.elements["vendor"].text.to_s unless element.elements["vendor"].nil?
 				#vendor = element.elements["vendor"].text.to_s 
-				vendor = "nothere_Vendor" if vendor == nil
-				vendor = "unknown_Vendor" if vendor == ""
-				$vendor = vendor
+				diskvendor = "nothere_Vendor" if diskvendor == nil
+				diskvendor = "unknown_Vendor" if diskvendor == ""
+				$diskvendor = diskvendor
 			rescue
 			end
-			puts "diskVendor -:" + $vendor + ":-"
+			puts "diskVendor0 -:" + $diskvendor + ":-"
 			begin
 				version_no = element.elements["version"].text.to_s
 			rescue
@@ -291,13 +292,14 @@ def scan_parts (doc)
 				product = element.elements["description"].text.to_s 
 				product = storageproduct unless storageproduct == ""
 			end
+			puts "product0 -:" + product + ":-"
 			begin
 				size = element.elements["size"].text.to_i
 				unit = element.elements["size"].attributes["units"]
 			rescue
 			end
 			
-			puts element.attributes["handle"] + " " + $vendor + " : " + product + " SN:" + serialno + " " + version_no + " " + businfo + " " + size.to_s + " " + unit
+			puts element.attributes["handle"] + " " + $diskvendor + " : " + product + " SN:" + serialno + " " + version_no + " " + businfo + " " + size.to_s + " " + unit
 			if element.attributes["id"] =~ /^cdrom/ 
 				#	puts "  " + element.elements["logicalname"].text
 				cdrom = true
@@ -399,7 +401,7 @@ def scan_parts (doc)
 				
 			}
 			# alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname ] )
-			alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no, vendor ] )
+			alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no, diskvendor ] )
 		}
 		# FIXME: This is weird copy&paste
 		x.elements.each("node[@class='disk']/node[@class='disk']") { |element|
@@ -411,6 +413,16 @@ def scan_parts (doc)
 			diskname = element.elements["logicalname"].text.to_s
 			serialno = ""
 			version_no = ""
+			diskvendor = ""
+			begin
+				diskvendor = element.elements["vendor"].text.to_s unless element.elements["vendor"].nil?
+				#vendor = element.elements["vendor"].text.to_s 
+				diskvendor = "nothere_Vendor" if diskvendor == nil
+				diskvendor = "unknown_Vendor" if diskvendor == ""
+				$diskvendor = diskvendor
+			rescue
+			end
+			puts "diskVendor1 -:" + $diskvendor + ":-"
 			begin
 				version_no = element.elements["version"].text.to_s
 			rescue
@@ -423,15 +435,16 @@ def scan_parts (doc)
 				product = element.elements["product"].text.to_s
 			rescue
 				# product = element.elements["description"].text.to_s
-				product = "unknown"
+				product = "unknown_product"
 			end
+			puts "product1 -:" + product + ":-"
 			begin
 				size = element.elements["size"].text.to_i
 				unit = element.elements["size"].attributes["units"]
 			rescue
 			end
 
-			puts element.attributes["handle"] + " " + vendor + " : " + product + " SN:" + serialno + " " + version_no + " " + businfo + " " + size.to_s + " " + unit
+			puts element.attributes["handle"] + " " + diskvendor + " : " + product + " SN:" + serialno + " " + version_no + " " + businfo + " " + size.to_s + " " + unit
 
 			if element.attributes["id"] =~ /^cdrom/ 
 				#	puts "  " + element.elements["logicalname"].text
@@ -521,7 +534,7 @@ def scan_parts (doc)
 				
 			}
 			# alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname ] )
-			alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no, vendor ] )
+			alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no, diskvendor ] )
 		}
 		x.elements.each("node[@class='volume']") { |element|
 			if element.elements["logicalname"].text =~ /^\/dev\/sd/ && businfo =~ /^usb/
@@ -565,7 +578,7 @@ def scan_parts (doc)
 				mount_point = log_name[1] if log_name.size > 1
 				parts.push( [ element.elements["logicalname"].text, ifstype.to_s, istate, mount_point, irw, capacity ] )
 				# alldisks.push( [ businfo, product, size, unit, cdrom, parts, diskname ] )
-				alldisks.push( [ businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no, vendor ] )
+				alldisks.push( [ businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no, diskvendor ] )
 			end
 			#all_drives[element.elements["logicalname"].text] = udrive unless 
 			#all_drives.has_key?( element.elements["logicalname"].text )
@@ -627,7 +640,7 @@ def update_partcombo(disks, partcombo, partrows, drivecombo, driverows)
 				$device = device = d[6]
 				$serialno = serialno = d[7]
 				$version_no = version_no = d[8]
-				$nicedrive = nicedrive = $vendor + ":" + d[1] + " " + device + " (" + businfo + ", " + sizestr + ", SN:" + serialno + ", Version:" + version_no + ")"
+				$nicedrive = nicedrive = $diskvendor + ":" + d[1] + " " + device + " (" + businfo + ", " + sizestr + ", SN:" + serialno + ", Version:" + version_no + ")"
 				drivecombo.append_text(nicedrive)
 				disk_rows += 1
 				disk_array.push(device)
@@ -671,7 +684,7 @@ def apply_settings(assi, device, pattern, count)
 		f.puts "	Method:    Number of writes? " + count.to_s + " with complex pattern? " + pattern.to_s
 		f.puts ""
 		f.puts "	Clearing Object Details:"
-		f.puts "	Vendor / Modell / Version:	" + $vendor + " / " + $product + " / " + $version_no
+		f.puts "	Diskvendor / Modell / Version:	" + $diskvendor + " / " + $product + " / " + $version_no
 		f.puts "	SerialNo / real Size:		" + $serialno + " / " + $size_unit
 		f.puts "< ----------------------------------------------------------------------------------- <output dc3dd>"
 	end
