@@ -21,8 +21,8 @@ remark: the original script runs on ubuntu-live-dvd with gnome
   
   
   
-.)FAQ  
 < ---------------------------------------------------------------------------->  
+.)FAQ  
   
 1.) What is "Desinfec't 2015"?  
 see: http://heise.de  
@@ -78,6 +78,29 @@ on an old onboard Intel 915 graphics-card based PC
 and a log aka some printable report is needed.  
   
 < ---------------------------------------------------------------------------->  
+  
+  
+  
+Some important readings on Hidden Data Areas:  
+ HPA (Host Protect Area) + DCO (Device Configuration Overlay)  
+-------------------------------------------------------------  
+!!! BE CAREFUL AND TAKE MUCH CARE !!!  
+HDPARM  
+http://man7.org/linux/man-pages/man8/hdparm.8.html  
+  
+English:  
+http://superuser.com/questions/642637/harddrive-wipe-out-hidden-areas-like-hpa-and-dco-also-after-malware-infectio  
+http://serverfault.com/questions/56280/fastest-surest-way-to-erase-a-hard-drive/537341#537341  
+https://tinyapps.org/docs/wipe_drives_hdparm.html#n4  
+
+  
+  
+Deutsch:  
+https://wiki.debianforum.de/Hdparm#Funktion_freischalten (DCO)  
+https://wiki.debianforum.de/Hdparm#HPA_-_Host_Protect_Area (HPA)  
+  
+< ---------------------------------------------------------------------------->  
+  
   
   
 more to be written  
