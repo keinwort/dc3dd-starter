@@ -1,7 +1,13 @@
 changelog
 
+2011-11-14
++ separates "vendor" variable for @class='storage' and @class='disk'
++ added $diskvendor variable
++ minor changes in english grammar
++ added some links on Hidden Data Areas in readme.md
+
 2011-11-13
-+ added hint in readme.md for PDF output
++ added hint for PDF output in readme.md 
 + changes in $vendor variable handling
 + reformat code
 + log layout changes (3 overwrites prints on one DIN A4 Page now at a font size of 10points) 
