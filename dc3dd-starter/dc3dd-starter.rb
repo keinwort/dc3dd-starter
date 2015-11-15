@@ -270,14 +270,26 @@ def scan_parts (doc)
 			version_no = ""
 			#diskvendor = ""
 			begin
+				product = element.elements["product"].text.to_s
+			rescue
+				product = element.elements["description"].text.to_s 
+				product = storageproduct unless storageproduct == ""
+			end
+			puts "product0 -:" + product + ":-"
+			begin
 				diskvendor = element.elements["vendor"].text.to_s unless element.elements["vendor"].nil?
 				#vendor = element.elements["vendor"].text.to_s 
 				diskvendor = "nothere_Vendor" if diskvendor == nil
 				diskvendor = "unknown_Vendor" if diskvendor == ""
-				$diskvendor = diskvendor
+				if diskvendor == ("nothere_Vendor" || "unknown_Vendor")
+					$diskvendor = product
+				else 
+					$diskvendor = diskvendor
+				end
 			rescue
 			end
-			puts "diskVendor0 -:" + $diskvendor + ":-"
+			puts "diskVendor0 -:" + diskvendor + ":-"
+			puts "diskVendor$ -:" + $diskvendor + ":-"
 			begin
 				version_no = element.elements["version"].text.to_s
 			rescue
@@ -286,13 +298,7 @@ def scan_parts (doc)
 				serialno = element.elements["serial"].text.to_s
 			rescue
 			end
-			begin
-				product = element.elements["product"].text.to_s
-			rescue
-				product = element.elements["description"].text.to_s 
-				product = storageproduct unless storageproduct == ""
-			end
-			puts "product0 -:" + product + ":-"
+			
 			begin
 				size = element.elements["size"].text.to_i
 				unit = element.elements["size"].attributes["units"]
@@ -401,7 +407,7 @@ def scan_parts (doc)
 				
 			}
 			# alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname ] )
-			alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no, diskvendor ] )
+			alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no, $diskvendor ] )
 		}
 		# FIXME: This is weird copy&paste
 		x.elements.each("node[@class='disk']/node[@class='disk']") { |element|
@@ -413,16 +419,28 @@ def scan_parts (doc)
 			diskname = element.elements["logicalname"].text.to_s
 			serialno = ""
 			version_no = ""
-			diskvendor = ""
+			#diskvendor = ""
+			begin
+				product = element.elements["product"].text.to_s
+			rescue
+				# product = element.elements["description"].text.to_s
+				product = "unknown_product"
+			end
+			puts "product1 -:" + product + ":-"
 			begin
 				diskvendor = element.elements["vendor"].text.to_s unless element.elements["vendor"].nil?
 				#vendor = element.elements["vendor"].text.to_s 
 				diskvendor = "nothere_Vendor" if diskvendor == nil
 				diskvendor = "unknown_Vendor" if diskvendor == ""
-				$diskvendor = diskvendor
+				if diskvendor == ("nothere_Vendor" || "unknown_Vendor")
+					$diskvendor = product
+				else 
+					$diskvendor = diskvendor
+				end
 			rescue
 			end
-			puts "diskVendor1 -:" + $diskvendor + ":-"
+			puts "diskVendor1 -:" + diskvendor + ":-"
+			puts "diskVendor$ -:" + $diskvendor + ":-"
 			begin
 				version_no = element.elements["version"].text.to_s
 			rescue
@@ -431,13 +449,7 @@ def scan_parts (doc)
 				serialno = element.elements["serial"].text.to_s
 			rescue
 			end
-			begin
-				product = element.elements["product"].text.to_s
-			rescue
-				# product = element.elements["description"].text.to_s
-				product = "unknown_product"
-			end
-			puts "product1 -:" + product + ":-"
+			
 			begin
 				size = element.elements["size"].text.to_i
 				unit = element.elements["size"].attributes["units"]
@@ -534,7 +546,7 @@ def scan_parts (doc)
 				
 			}
 			# alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname ] )
-			alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no, diskvendor ] )
+			alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no, $diskvendor ] )
 		}
 		x.elements.each("node[@class='volume']") { |element|
 			if element.elements["logicalname"].text =~ /^\/dev\/sd/ && businfo =~ /^usb/
@@ -578,7 +590,7 @@ def scan_parts (doc)
 				mount_point = log_name[1] if log_name.size > 1
 				parts.push( [ element.elements["logicalname"].text, ifstype.to_s, istate, mount_point, irw, capacity ] )
 				# alldisks.push( [ businfo, product, size, unit, cdrom, parts, diskname ] )
-				alldisks.push( [ businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no, diskvendor ] )
+				alldisks.push( [ businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no, $diskvendor ] )
 			end
 			#all_drives[element.elements["logicalname"].text] = udrive unless 
 			#all_drives.has_key?( element.elements["logicalname"].text )
@@ -668,6 +680,53 @@ end
 
 def apply_settings(assi, device, pattern, count)
 
+	### get HPA (Host Protect Area) Status
+	### need only the lastline
+	$hpaStatus = "CANNOT_GET_HPA-STATUS"
+	puts "----------------------"
+	hpa_command = "hdparm -N " + device.to_s
+	puts "HPA full output of # " + hpa_command
+	IO.popen(hpa_command) do |io|
+		io.each do |hpa_line|
+			puts hpa_line
+			$hpaStatus = hpa_line.gsub(/\s+/, " ").strip
+		end
+		puts "HPA full output end "
+		puts "----------------------"
+	end
+	
+	puts $hpaStatus
+	
+	# To remove the HPA and expand the visible area out to the full size of the drive use the denominator (visible area/max sectors):
+	# hdparm -N p[max sectors] /dev/sdx
+	# example: hdparm -N p78165320 /dev/sdx
+	### HPA end
+	
+	### get DCO (Device Configuration Overlay) Status
+	### only output on commandline yet
+	$dcoStatus = "CANNOT_GET_DCO-STATUS"
+	dco_command = "hdparm --dco-identify " + device.to_s
+	puts "----------------------"
+	puts "DCO full output of # " + dco_command
+	IO.popen(dco_command) do |io|
+		io.each do |dco_line|
+			puts dco_line
+			$dcoStatus = dco_line.gsub(/\s+/, " ").strip
+		end
+		puts "DCO full output end "
+		puts "----------------------"
+	end
+	
+	# puts $dcoStatus
+	# 
+	# "# hdparm --dco-identify /dev/sdx" have to be compared to output of "# hdparm -I /dev/sdx"
+	# If you want to attempt reverting the DCO back to factory defaults, you can use the following HDPARM command:
+	# hdparm --dco-restore /dev/sdx
+	# !!! WARNING !!! Use of --dco-restore is VERY DANGEROUS.
+	# # hdparm --yes-i-know-what-i-am-doing --dco-restore /dev/sdx
+	
+	
+	
 	### ======================================== ###
 	### set up some text for report file header  ###
 	### ======================================== ###
@@ -679,9 +738,9 @@ def apply_settings(assi, device, pattern, count)
 		f.puts ".                                  .    " + $nicetime + "    .                                 ."
 		f.puts ":.________________________________________________________________________________________________.:"
 		f.puts "	ReportNo: " + $unique_string
-		f.puts "	Selected Object for clearing -> " + device
+		f.puts "	Selected Object :HPA-Status -> " + device + " :" + $hpaStatus
 		f.puts "	" + $nicedrive
-		f.puts "	Method:    Number of writes? " + count.to_s + " with complex pattern? " + pattern.to_s
+		f.puts "	Method: Number of writes? " + count.to_s.strip[0] + " with complex pattern? " + pattern.to_s
 		f.puts ""
 		f.puts "	Clearing Object Details:"
 		f.puts "	Diskvendor / Modell / Version:	" + $diskvendor + " / " + $product + " / " + $version_no
@@ -689,12 +748,16 @@ def apply_settings(assi, device, pattern, count)
 		f.puts "< ----------------------------------------------------------------------------------- <output dc3dd>"
 	end
 	#=end
-
+puts "created report header"
+puts "----------------------"
 	### just some console puts
 	puts "Device: " + device.to_s
-	puts "Number of writes?      " + count.to_s
-	puts "Use complex pattern?   " + pattern.to_s
+	puts "Number of writes?     " + count.to_s.strip[0]
+	puts "Use complex pattern?  " + pattern.to_s
+	puts "HPA-Status:           " + $hpaStatus
 	puts "Alles hat ein Ende!"
+
+	puts "---- commencing data destruction ----"
 
 	0.upto(count.to_i - 1) { |i|
 		hexpat = "deadbeef"
@@ -738,20 +801,23 @@ def apply_settings(assi, device, pattern, count)
 			### system("Terminal --geometry=80x12 --hide-toolbar --hide-menubar --disable-server -T \"" + extract_lang_string("deleting") + " " + (i + 1).to_s + " - " + extract_lang_string("do_not_close") + "\" -x " + command)
 			### change to a more common terminal-type and bring a little bit of color to life,
 			### set a nice font, but beware of the wrong one because no underline will be shown then or perhaps other strange display faults
-			system("uxterm -fa 'Courier' -fs 14 -bd red -bg darkblue -b 16 -w 8 -fg orange -geometry 100x12 -uc +ulc -wf -title \"" + extract_lang_string("deleting") + " " + (i + 1).to_s + " - " + extract_lang_string("do_not_close") + "\" -e " + command)
+						system("uxterm -fa 'Courier' -fs 14 -bd red -bg darkblue -b 16 -w 8 -fg orange -geometry 100x12 -uc +ulc -wf -title \"" + extract_lang_string("deleting") + " " + (i + 1).to_s + " - " + extract_lang_string("do_not_close") + "\" -e " + command)
 		end
 	}
  
+	puts "---- data destruction processed. ----"
+	puts "---- errors or faults in report? ----"
 	### ================================== ###
 	### set up some footer text for report ###
 	### ================================== ###
 	#=begin
-    open($file_for_report, 'a') do |f|
+	open($file_for_report, 'a') do |f|
 		f.puts "</output dc3dd> ---------------------------------------------------------------------------------- >"
 		f.puts "	end ReportNo: " + $unique_string
 		f.puts ""
 		f.puts "    ----- location -----    ----- date -----    ----- sign -----    ----- readable name -----       "
-    end
+	end
+	puts "inserted report footer"
 	#=end
 
 	dialog = Gtk::Dialog.new(extract_lang_string("del_completed_short"),assi,Gtk::Dialog::MODAL,
