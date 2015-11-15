@@ -21,7 +21,7 @@ remark: the original script runs on ubuntu-live-dvd with gnome
   
   
   
-< ---------------------------------------------------------------------------->  
+< ---------------------------------------------------------------------------- >  
 .)FAQ  
   
 1.) What is "Desinfec't 2015"?  
@@ -37,10 +37,10 @@ GPL v2.0, as in orginal file.
   
 3.) What do i need to install (in Kali2.0)? (i hope i put only needed progs ;) )  
 3a. Mate Desktop (i prefer full extras)  
-~# apt-get install kali-defaults kali-root-login desktop-base mate-core mate-desktop-environment-extra  
+~# apt-get install kali-defaults kali-root-login desktop-base mate-core mate-desktop-environment-extras  
   
 3b. things the script needs  
-~# apt-get libteam-utils lshw exo-utils ruby-gtk2 ruby-libxml ruby-multi-xml  
+~# apt-get install libteam-utils lshw exo-utils ruby-gtk2 ruby-libxml ruby-multi-xml  
   
 3c. and of course, but it should be already there  
 ~# apt-get install dc3dd  
@@ -48,7 +48,7 @@ GPL v2.0, as in orginal file.
   
 4.) What do i need to run the script?  
 4a. a folder for the logs, (it's hardcoded by now)  
-~# mkdir /root/logs/clearing  
+~# mkdir /root/logs && mkdir /root/logs/clearing  
   
 4b. a folder for the script(s) itself, i would recommend  
 ~# mkdir /opt/desinfect  
@@ -65,7 +65,7 @@ copy or move them to /opt/desinfect/
 ~# sudo /opt/desinfect/dc3dd-starter.sh  
 or  
 4e.II: set up a starter on the desktop  
-command "sudo /opt/desinfect/dc3dd-starter.sh"
+command "sudo /opt/desinfect/dc3dd-starter.sh"  
   
   
 5.) for a nice PDF-Report  
@@ -77,14 +77,14 @@ need to delete a lot of old IDE-Harddisks(PATA)
 on an old onboard Intel 915 graphics-card based PC  
 and a log aka some printable report is needed.  
   
-< ---------------------------------------------------------------------------->  
+< ---------------------------------------------------------------------------- >  
   
   
   
 Some important readings on Hidden Data Areas:  
  HPA (Host Protect Area) + DCO (Device Configuration Overlay)  
 -------------------------------------------------------------  
-!!! BE CAREFUL AND TAKE MUCH CARE !!!  
+!!! BE VERY CAREFUL WITH THIS !!!  
 HDPARM  
 http://man7.org/linux/man-pages/man8/hdparm.8.html  
   
@@ -99,7 +99,29 @@ Deutsch:
 https://wiki.debianforum.de/Hdparm#Funktion_freischalten (DCO)  
 https://wiki.debianforum.de/Hdparm#HPA_-_Host_Protect_Area (HPA)  
   
-< ---------------------------------------------------------------------------->  
+< ---------------------------------------------------------------------------- >  
+  
+  
+  
+x ---------------------------------------------------------------------------- x  
+some hints:  
+- autologin in kali  
+(but be aware that this could be a very great security risk)  
+ edit the file "/etc/gdm3/daemon.conf"  
+ in the daemon section uncomment these 2 lines for automatic login  
+        [daemon]  
+        # Enabling automatic login  
+        AutomaticLoginEnable = true  
+        AutomaticLogin = root  
+  
+- set mate desktop enviroment as default  
+ execute and select mate-seesion as default  
+~# update-alternatives --config x-session-manager  
+  
+- autostart sshd at start  
+ execute  
+~# update-rc.d ssh enable  
+x ---------------------------------------------------------------------------- x  
   
   
   
@@ -109,7 +131,7 @@ wkr
 stephy rul aka keinwort  
   
   
-hint:  
+yet an other hint:  
 i am a ruby noob  
   
 sollte es lizenzprobleme geben, bitte kontakt per github  
