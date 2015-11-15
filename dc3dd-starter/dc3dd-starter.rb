@@ -736,8 +736,8 @@ def apply_settings(assi, device, pattern, count)
 		f.puts " __________________________________________________________________________________________________ "
 		f.puts ".                                  .       CLEARING REPORT       .                                 ."
 		f.puts ".                                  .    " + $nicetime + "    .                                 ."
-		f.puts ":.________________________________________________________________________________________________.:"
-		f.puts "	ReportNo: " + $unique_string
+		f.puts ":._____________________________________________ ReportNo: "  + $unique_string +" .:"
+		#		f.puts "	ReportNo: " + $unique_string
 		f.puts "	Selected Object :HPA-Status -> " + device + " :" + $hpaStatus
 		f.puts "	" + $nicedrive
 		f.puts "	Method: Number of writes? " + count.to_s.strip[0] + " with complex pattern? " + pattern.to_s
@@ -748,8 +748,8 @@ def apply_settings(assi, device, pattern, count)
 		f.puts "< ----------------------------------------------------------------------------------- <output dc3dd>"
 	end
 	#=end
-puts "created report header"
-puts "----------------------"
+	puts "created report header"
+	puts "----------------------"
 	### just some console puts
 	puts "Device: " + device.to_s
 	puts "Number of writes?     " + count.to_s.strip[0]
@@ -801,7 +801,7 @@ puts "----------------------"
 			### system("Terminal --geometry=80x12 --hide-toolbar --hide-menubar --disable-server -T \"" + extract_lang_string("deleting") + " " + (i + 1).to_s + " - " + extract_lang_string("do_not_close") + "\" -x " + command)
 			### change to a more common terminal-type and bring a little bit of color to life,
 			### set a nice font, but beware of the wrong one because no underline will be shown then or perhaps other strange display faults
-						system("uxterm -fa 'Courier' -fs 14 -bd red -bg darkblue -b 16 -w 8 -fg orange -geometry 100x12 -uc +ulc -wf -title \"" + extract_lang_string("deleting") + " " + (i + 1).to_s + " - " + extract_lang_string("do_not_close") + "\" -e " + command)
+			system("uxterm -fa 'Courier' -fs 14 -bd red -bg darkblue -b 16 -w 8 -fg orange -geometry 100x12 -uc +ulc -wf -title \"" + extract_lang_string("deleting") + " " + (i + 1).to_s + " - " + extract_lang_string("do_not_close") + "\" -e " + command)
 		end
 	}
  
