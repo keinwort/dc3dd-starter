@@ -1,5 +1,11 @@
 changelog
 
+2015-11-17
+- double disk vendor display
++ minor things
++ added a wikipedia link about HPA in readme.md
++ added dfferent example storage.xml files( i am testing on 2 virtual-PCs and one real old PC)
+
 2015-11-16
 +++ o man what a mess. corrected the changlog dates year. OMG
 + added HPA-Status to log (output of # hdparm -N )

@@ -231,7 +231,7 @@ def read_devs
 		$dummy = true
 	else	
 		# system("sudo /sbin/mdev -s")
-		sleep 2
+		# sleep 2
 		xmlstr = ""
 		### IO.popen("sudo /usr/bin/lshw -xml") { |x|
 		### we only need information on disks, storage and volumes
@@ -255,13 +255,13 @@ def scan_parts (doc)
 		end
 		storageproduct = ""
 		begin
-			storageproduct = x.elements["vendor"].text.to_s + "::" + x.elements["product"].text.to_s
+			storageproduct = x.elements["vendor"].text.to_s + " " + x.elements["product"].text.to_s
 		rescue
 		end
 		puts "storageproduct0 -:" + storageproduct + ":-"
 		x.elements.each("node[@class='disk']") { |element|
 			parts = []
-			product = ""
+			diskproduct = ""
 			size = 0
 			unit = ""
 			cdrom = false
@@ -270,21 +270,29 @@ def scan_parts (doc)
 			version_no = ""
 			#diskvendor = ""
 			begin
-				product = element.elements["product"].text.to_s
+				#	product = element.elements["product"].text.to_s
+				diskproduct = element.elements["product"].text.to_s.split 
+						$disk_vendor_short = diskproduct[0].strip.to_s
+						$disk_modell = diskproduct[1].strip.to_s
+
+			#	diskproduct = element.elements["product"].text.to_s
 			rescue
-				product = element.elements["description"].text.to_s 
-				product = storageproduct unless storageproduct == ""
+			#	product = element.elements["description"].text.to_s 
+			#	product = storageproduct unless storageproduct == ""
 			end
-			puts "product0 -:" + product + ":-"
+			puts "disk_vendor_short -:" + $disk_vendor_short + ":-"
+			puts "disk_modell -:" + $disk_modell + ":-"
+		#	puts "product0 -:" + diskproduct + ":-"
 			begin
 				diskvendor = element.elements["vendor"].text.to_s unless element.elements["vendor"].nil?
 				#vendor = element.elements["vendor"].text.to_s 
 				diskvendor = "nothere_Vendor" if diskvendor == nil
 				diskvendor = "unknown_Vendor" if diskvendor == ""
 				if diskvendor == ("nothere_Vendor" || "unknown_Vendor")
-					$diskvendor = product
+					#$diskvendor = product
+					$diskvendor = $disk_vendor_short
 				else 
-					$diskvendor = diskvendor
+					$diskvendor = diskvendor + " " + $disk_vendor_short
 				end
 			rescue
 			end
@@ -305,7 +313,7 @@ def scan_parts (doc)
 			rescue
 			end
 			
-			puts element.attributes["handle"] + " " + $diskvendor + " : " + product + " SN:" + serialno + " " + version_no + " " + businfo + " " + size.to_s + " " + unit
+			puts element.attributes["handle"] + " " + $diskvendor + " : " + $disk_modell + " SN:" + serialno + " " + version_no + " " + businfo + " " + size.to_s + " " + unit
 			if element.attributes["id"] =~ /^cdrom/ 
 				#	puts "  " + element.elements["logicalname"].text
 				cdrom = true
@@ -407,7 +415,7 @@ def scan_parts (doc)
 				
 			}
 			# alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname ] )
-			alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no, $diskvendor ] )
+			alldisks.push( [  businfo, $disk_modell, size, unit, cdrom, parts, diskname, serialno, version_no, $diskvendor ] )
 		}
 		# FIXME: This is weird copy&paste
 		x.elements.each("node[@class='disk']/node[@class='disk']") { |element|
@@ -691,16 +699,16 @@ def apply_settings(assi, device, pattern, count)
 			puts hpa_line
 			$hpaStatus = hpa_line.gsub(/\s+/, " ").strip
 		end
-		puts "HPA full output end "
+		puts "HPA full output end"
 		puts "----------------------"
 	end
-	
 	puts $hpaStatus
-	
 	# To remove the HPA and expand the visible area out to the full size of the drive use the denominator (visible area/max sectors):
 	# hdparm -N p[max sectors] /dev/sdx
 	# example: hdparm -N p78165320 /dev/sdx
 	### HPA end
+	
+	
 	
 	### get DCO (Device Configuration Overlay) Status
 	### only output on commandline yet
@@ -713,12 +721,10 @@ def apply_settings(assi, device, pattern, count)
 			puts dco_line
 			$dcoStatus = dco_line.gsub(/\s+/, " ").strip
 		end
-		puts "DCO full output end "
+		puts "DCO full output end"
 		puts "----------------------"
 	end
-	
 	# puts $dcoStatus
-	# 
 	# "# hdparm --dco-identify /dev/sdx" have to be compared to output of "# hdparm -I /dev/sdx"
 	# If you want to attempt reverting the DCO back to factory defaults, you can use the following HDPARM command:
 	# hdparm --dco-restore /dev/sdx
@@ -736,8 +742,8 @@ def apply_settings(assi, device, pattern, count)
 		f.puts " __________________________________________________________________________________________________ "
 		f.puts ".                                  .       CLEARING REPORT       .                                 ."
 		f.puts ".                                  .    " + $nicetime + "    .                                 ."
-		f.puts ":._____________________________________________ ReportNo: "  + $unique_string +" .:"
-		#		f.puts "	ReportNo: " + $unique_string
+		f.puts ":.________________________________________________________________________________________________.:"
+		f.puts "	ReportNo: " + $unique_string
 		f.puts "	Selected Object :HPA-Status -> " + device + " :" + $hpaStatus
 		f.puts "	" + $nicedrive
 		f.puts "	Method: Number of writes? " + count.to_s.strip[0] + " with complex pattern? " + pattern.to_s
@@ -801,7 +807,7 @@ def apply_settings(assi, device, pattern, count)
 			### system("Terminal --geometry=80x12 --hide-toolbar --hide-menubar --disable-server -T \"" + extract_lang_string("deleting") + " " + (i + 1).to_s + " - " + extract_lang_string("do_not_close") + "\" -x " + command)
 			### change to a more common terminal-type and bring a little bit of color to life,
 			### set a nice font, but beware of the wrong one because no underline will be shown then or perhaps other strange display faults
-			system("uxterm -fa 'Courier' -fs 14 -bd red -bg darkblue -b 16 -w 8 -fg orange -geometry 100x12 -uc +ulc -wf -title \"" + extract_lang_string("deleting") + " " + (i + 1).to_s + " - " + extract_lang_string("do_not_close") + "\" -e " + command)
+			system("uxterm -fa 'Courier' -fs 12 -bd red -bg darkblue -b 16 -w 8 -fg orange -geometry 100x12 -uc +ulc -wf -title \"" + extract_lang_string("deleting") + " " + (i + 1).to_s + " - " + extract_lang_string("do_not_close") + "\" -e " + command)
 		end
 	}
  

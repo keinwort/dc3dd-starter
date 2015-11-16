@@ -92,6 +92,7 @@ English:
 http://superuser.com/questions/642637/harddrive-wipe-out-hidden-areas-like-hpa-and-dco-also-after-malware-infectio  
 http://serverfault.com/questions/56280/fastest-surest-way-to-erase-a-hard-drive/537341#537341  
 https://tinyapps.org/docs/wipe_drives_hdparm.html#n4  
+https://en.wikipedia.org/wiki/Host_protected_area  
 
   
   
