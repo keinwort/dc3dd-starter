@@ -268,31 +268,54 @@ def scan_parts (doc)
 			diskname = element.elements["logicalname"].text.to_s
 			serialno = ""
 			version_no = ""
-			#diskvendor = ""
+			# we do not initialize "disk-"vendor here 
+			# because it would give a false status 
+			# if vendor is given by the disk
+			# diskvendor = ""
 			begin
-				#	product = element.elements["product"].text.to_s
-				diskproduct = element.elements["product"].text.to_s.split 
-						$disk_vendor_short = diskproduct[0].strip.to_s
-						$disk_modell = diskproduct[1].strip.to_s
-
-			#	diskproduct = element.elements["product"].text.to_s
+				# for testing only: "disk-"product can be ether of fakeproduct
+				# this gives model usually
+				# fakeproduct = "fakeDisk"
+				# this gives a "short" vendor + a model
+				# fakeproduct = "fake Disk"
+				# diskproduct = fakeproduct.to_s.split
+				diskproduct = element.elements["product"].text.to_s.split
+				if diskproduct.length == 2
+					$disk_vendor_product = diskproduct[0].strip.to_s
+					$disk_model = diskproduct[1].strip.to_s
+				else 
+					# need for testing only
+					# diskproduct = fakeproduct
+					diskproduct = element.elements["product"].text.to_s
+					$disk_vendor_product = "no_disk_vendor_product"
+					$disk_model = diskproduct
+				end
 			rescue
-			#	product = element.elements["description"].text.to_s 
-			#	product = storageproduct unless storageproduct == ""
 			end
-			puts "disk_vendor_short -:" + $disk_vendor_short + ":-"
-			puts "disk_modell -:" + $disk_modell + ":-"
-		#	puts "product0 -:" + diskproduct + ":-"
+			unless $disk_vendor_product == ("no_disk_vendor_product" || nil)
+				puts "disk_vendor_short -:" + $disk_vendor_product + ":-" 
+			end
+			puts "disk_model -:" + $disk_model + ":-"
+			puts diskproduct.inspect
 			begin
+				# testing: "vendor" be or not to be ;-)
+				# fakevendor = "fakeFirm"
+				# diskvendor = fakevendor.to_s
 				diskvendor = element.elements["vendor"].text.to_s unless element.elements["vendor"].nil?
-				#vendor = element.elements["vendor"].text.to_s 
 				diskvendor = "nothere_Vendor" if diskvendor == nil
 				diskvendor = "unknown_Vendor" if diskvendor == ""
 				if diskvendor == ("nothere_Vendor" || "unknown_Vendor")
-					#$diskvendor = product
-					$diskvendor = $disk_vendor_short
+					if $disk_vendor_product == ("no_disk_vendor_product" || nil)
+						$diskvendor = diskvendor
+					else
+						$diskvendor = $disk_vendor_product
+					end
 				else 
-					$diskvendor = diskvendor + " " + $disk_vendor_short
+					unless $disk_vendor_product == ("no_disk_vendor_product" || nil)
+						$diskvendor = diskvendor + " " + $disk_vendor_product
+					else
+						$diskvendor = diskvendor
+					end
 				end
 			rescue
 			end
@@ -313,7 +336,7 @@ def scan_parts (doc)
 			rescue
 			end
 			
-			puts element.attributes["handle"] + " " + $diskvendor + " : " + $disk_modell + " SN:" + serialno + " " + version_no + " " + businfo + " " + size.to_s + " " + unit
+			puts element.attributes["handle"] + " " + $diskvendor + " : " + $disk_model + " SN:" + serialno + " " + version_no + " " + businfo + " " + size.to_s + " " + unit
 			if element.attributes["id"] =~ /^cdrom/ 
 				#	puts "  " + element.elements["logicalname"].text
 				cdrom = true
@@ -415,7 +438,7 @@ def scan_parts (doc)
 				
 			}
 			# alldisks.push( [  businfo, product, size, unit, cdrom, parts, diskname ] )
-			alldisks.push( [  businfo, $disk_modell, size, unit, cdrom, parts, diskname, serialno, version_no, $diskvendor ] )
+			alldisks.push( [  businfo, $disk_model, size, unit, cdrom, parts, diskname, serialno, version_no, $diskvendor ] )
 		}
 		# FIXME: This is weird copy&paste
 		x.elements.each("node[@class='disk']/node[@class='disk']") { |element|
@@ -598,7 +621,7 @@ def scan_parts (doc)
 				mount_point = log_name[1] if log_name.size > 1
 				parts.push( [ element.elements["logicalname"].text, ifstype.to_s, istate, mount_point, irw, capacity ] )
 				# alldisks.push( [ businfo, product, size, unit, cdrom, parts, diskname ] )
-				alldisks.push( [ businfo, product, size, unit, cdrom, parts, diskname, serialno, version_no, $diskvendor ] )
+				alldisks.push( [ businfo, diskproduct, size, unit, cdrom, parts, diskname, serialno, version_no, $diskvendor ] )
 			end
 			#all_drives[element.elements["logicalname"].text] = udrive unless 
 			#all_drives.has_key?( element.elements["logicalname"].text )
@@ -749,7 +772,7 @@ def apply_settings(assi, device, pattern, count)
 		f.puts "	Method: Number of writes? " + count.to_s.strip[0] + " with complex pattern? " + pattern.to_s
 		f.puts ""
 		f.puts "	Clearing Object Details:"
-		f.puts "	Diskvendor / Modell / Version:	" + $diskvendor + " / " + $product + " / " + $version_no
+		f.puts "	Diskvendor / Model / Version:	" + $diskvendor + " / " + $product + " / " + $version_no
 		f.puts "	SerialNo / real Size:		" + $serialno + " / " + $size_unit
 		f.puts "< ----------------------------------------------------------------------------------- <output dc3dd>"
 	end
@@ -807,7 +830,7 @@ def apply_settings(assi, device, pattern, count)
 			### system("Terminal --geometry=80x12 --hide-toolbar --hide-menubar --disable-server -T \"" + extract_lang_string("deleting") + " " + (i + 1).to_s + " - " + extract_lang_string("do_not_close") + "\" -x " + command)
 			### change to a more common terminal-type and bring a little bit of color to life,
 			### set a nice font, but beware of the wrong one because no underline will be shown then or perhaps other strange display faults
-			system("uxterm -fa 'Courier' -fs 12 -bd red -bg darkblue -b 16 -w 8 -fg orange -geometry 100x12 -uc +ulc -wf -title \"" + extract_lang_string("deleting") + " " + (i + 1).to_s + " - " + extract_lang_string("do_not_close") + "\" -e " + command)
+				system("uxterm -fa 'Courier' -fs 12 -bd red -bg darkblue -b 16 -w 8 -fg orange -geometry 100x12 -uc +ulc -wf -title \"" + extract_lang_string("deleting") + " " + (i + 1).to_s + " - " + extract_lang_string("do_not_close") + "\" -e " + command)
 		end
 	}
  

@@ -1,5 +1,8 @@
 changelog
 
+2015-11-18
+- fixes disk-vendor and -model readout
+
 2015-11-17
 - double disk vendor display
 + minor things
