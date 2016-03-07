@@ -1,4 +1,7 @@
-changelog
+changelog  keinwort  <keinwort @bei@ hotmail .punkt. com>
+
+2015-11-23
++ minor spelling things
 
 2015-11-18
 - fixes disk-vendor and -model readout
@@ -7,12 +10,12 @@ changelog
 - double disk vendor display
 + minor things
 + added a wikipedia link about HPA in readme.md
-+ added dfferent example storage.xml files( i am testing on 2 virtual-PCs and one real old PC)
++ added different example storage.xml files( i am testing on 2 virtual-PCs and one real old PC)
 
 2015-11-16
 +++ o man what a mess. corrected the changlog dates year. OMG
 + added HPA-Status to log (output of # hdparm -N )
-+ added DCO output to output on commandline only
++ added DCO output to output on command-line only
 + some addictions/corrections in readme.md
 + played with diskvendor variable
 
@@ -23,10 +26,10 @@ changelog
 + added some links on Hidden Data Areas in readme.md
 
 2015-11-13
-+ added hint for PDF output in readme.md 
++ added hint for PDF output in readme.md
 + changes in $vendor variable handling
 + reformat code
-+ log layout changes (3 overwrites prints on one DIN A4 Page now at a font size of 10points) 
++ log layout changes (3 overwrites prints on one DIN A4 Page now at a font size of 10points)
 
 2015-11-12
 + extend the log
