@@ -27,15 +27,15 @@ remark: the original script runs on ubuntu-live-dvd with gnome
 #### .)FAQ  
   
 - 1.) What is "Desinfec't 2015"?  
-see: http://heise.de  
-http://www.heise.de/ct/hotline/FAQ-Desinfec-t-2015-2753002.html  
-http://www.heise.de/forum/heise-Security/Themen-Hilfe/Desinfect/forum-33383/  
-https://shop.heise.de/katalog/ct-14-2015  
+see: https://heise.de  
+https://www.heise.de/ct/hotline/FAQ-Desinfec-t-2015-2753002.html  
+https://www.heise.de/forum/heise-Security/Themen-Hilfe/Desinfect/forum-33383/  
+https://shop.heise.de/katalog/ct-14-2015 (find the newest version here https://shop.heise.de/catalogsearch/result?q=desinfect)  
   
   
 - 2.) License?  
 GPL v2.0, as in original file.  
-see http://www.heise.de/forum/heise-Security/Themen-Hilfe/Desinfect/Re-Desinfect-PXE-CIFSIGS-Loesung/posting-2158568/show/
+see https://www.heise.de/forum/heise-Security/Themen-Hilfe/Desinfect/Re-Desinfect-PXE-CIFSIGS-Loesung/posting-2158568/show/
   
 - 3.) What do i need to install (in Kali2.0)? (i hope i put only needed progs ;) )  
   - 3a. Mate Desktop (i prefer full extras)  
@@ -105,11 +105,11 @@ Some important readings on Hidden Data Areas:
 -------------------------------------------------------------  
 !!! BE VERY CAREFUL WITH THIS !!!  
 HDPARM  
-http://man7.org/linux/man-pages/man8/hdparm.8.html  
+https://man7.org/linux/man-pages/man8/hdparm.8.html  
   
 English:  
-http://superuser.com/questions/642637/harddrive-wipe-out-hidden-areas-like-hpa-and-dco-also-after-malware-infectio  
-http://serverfault.com/questions/56280/fastest-surest-way-to-erase-a-hard-drive/537341#537341  
+https://superuser.com/questions/642637/harddrive-wipe-out-hidden-areas-like-hpa-and-dco-also-after-malware-infectio  
+https://serverfault.com/questions/56280/fastest-surest-way-to-erase-a-hard-drive/537341#537341  
 https://tinyapps.org/docs/wipe_drives_hdparm.html#n4  
 https://en.wikipedia.org/wiki/Host_protected_area  
   
